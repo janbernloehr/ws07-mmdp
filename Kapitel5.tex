@@ -1,0 +1,701 @@
+\section{Gewöhnliche Differentialgleichungen}
+Differentialgleichungen treten in der Physik sehr häufig auf
+
+\begin{Beispiel}[Radioaktiver Zerfall]
+Die Anzahl Atome, die in einem Zeitintervall $\Delta t$ zerfallen, ist
+proportional zur Anzahl Teilchen und der Rate $\Gamma$.
+\begin{align}
+&\Delta N = -N(t)\;\Gamma \cdot\Delta t\\
+\underset{\Delta t \to 0}{\Rightarrow} & \frac{dN(t)}{dt} = -\Gamma
+N(t)\nonumber
+\end{align}
+Die DG hat die Lösung $N(t) = N_0 e^{-\Gamma t}$ mit $N_0$ als Atomzahl zur
+Zeit $t = 0$.
+\end{Beispiel}
+
+\begin{Beispiel}[Harmonischer Oszillator]
+\begin{align*}
+& m\ddot{x}(t) = F = -m\omega^2x\\
+\Rightarrow & \ddot{x}(t) + \omega^2 x = 0
+\end{align*}
+Die DG hat die Lösung $x(t) = Ae^{i\omega t} + Be^{-i\omega t}$. Da $x(t)$
+reell ist, muss gelten $A^* = B = \frac{x_0}{2}e^{i\varphi}$ und die
+allgemeinste Lösung hat die Form
+\begin{equation*}
+x(t) = x_0 \cos(\omega t + \varphi)
+\end{equation*}
+mit $x_0$ und $\varphi$ bestimmt durch die Anfangs-/Randbedingungen.
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-1)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-6,0)(6,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ 
+ \psplot[linewidth=1.2pt,algebraic=true]{-3}{3}{(1/2)*x^2}
+ \psdot[linewidth=0.1cm,dotsize=0.5cm](2,2.8)
+ \psline{->}(1.75,2.4)(1.4,1.7)
+
+ \rput(5.7,-0.26){$x$}
+ \rput[l](0.2,5.7){$v(x) = \frac{1}{2}x^2$}
+ \end{pspicture}
+\end{center}
+
+\end{Beispiel}
+
+
+\subsection{Lineare Differentialgleichungen 1. Ordnung}
+Lineare DG 1. Ordnung haben die Form
+\begin{equation}
+y' = a(x)y + b(x),
+\end{equation}
+und benötigen im Allgmeinen eine Anfangsbedingung
+\begin{equation}
+y(0) = y_0,
+\end{equation}
+um eine spezielle Lösung zu bestimmen.
+
+\subsubsection{Der triviale Fall}
+Ist $a(x) = 0$, so ist die Lösung bestimmt durch das
+Integral von $b(x)$.
+\begin{equation}
+y(x) = \int \limits_{0}^{y} \du b(u) + y_0
+\end{equation}
+
+\begin{Beispiel}[Geschwindigkeit eines Teilchens mit zeitabhängiger Kraft]
+\begin{equation*}
+\dot{v} = \frac{F(t)}{m} \Rightarrow v = \int \limits_{0}^{t} \frac{F(t)}{m} dt
++ v_0
+\end{equation*}
+\end{Beispiel}
+
+\subsubsection{Der homogene Fall}
+Eine homogene Differentialgleichung hat die Form
+\begin{equation}
+y' = a(x)y.
+\end{equation}
+
+\begin{Bemerkung}
+ Eine Eigenschaft von linearen homogenen Differentialgleichungen ist, dass für die Lösungen $y_1, y_2$ auch folgende Funktionen Lösungen sind:
+\begin{itemize}
+ \item $\lambda y_1(x)$
+ \item $y_1(x)+y_2(x)$
+\end{itemize}
+\end{Bemerkung}
+
+Die Lösung der Differentialgleichung finden wir mittels Division von $y$:
+\begin{align*}
+ & \frac{y'}{y} = \frac{d}{dx} \ln{y} = a(x)\\
+\Rightarrow & \ln{y(x)} = \int \limits_{0}^{x} \du a(u) + c \equiv A(x)+c\\
+\Rightarrow & y(x) = y_0 e^{\int_0^{x}\du a(u)} = y_0 e^{A(x)}
+\end{align*}
+
+\subsubsection{Der inhomogene Fall}
+Zusätzlich zur homogenen Gleichung haben wir noch einen Treiber $b(x)$.
+\begin{align}
+ y' - a(x)y = b(x)
+\end{align}
+Für zwei Lösungen $y_1(x)$ und $y_2(x)$ gilt, dass
+\begin{align*}
+ y_1(x)-y_2(x)
+\end{align*}
+eine Lösung der homogenen Gleichung ist.
+\par
+\begin{info}
+\begin{align*}
+&\left[y_1(x) - y_2(x)\right]' - a(x)\left[y_1(x) - y_2(x)\right] \\
+= & \underbrace{\left[y_1'(x) - a(x)y_1(x)\right]}_{b(x)} -
+\underbrace{\left[y_2'(x) - a(x)y_2(x)\right]}_{b(x)} \\
+ = & b(x) - b(x) = 0
+\end{align*}
+\end{info}
+
+\par
+Eine Lösung erhält man mittels Multiplikation der DG mit $e^{-A(x)}$
+\begin{align}
+\Rightarrow & e^{-A(x)}y' - \underbrace{a(x)e^{-A(x)}}_{(e^{-A(x)})'}y =
+b(x)e^{-A(x)}\nonumber\\
+\Rightarrow & \frac{d}{dx}\left(ye^{-A(x)}\right) = b(x)e^{-A(x)}\nonumber\\
+\Rightarrow & y(x) = e^{A(x)} \underbrace{\int
+\limits_{0}^{x} \du b(u)e^{-A(u)}}_{\text{partikuläre Lösung}} +
+\underbrace{y_0e^{A(x)}}_{\text{homogene Lösung}}
+\label{TrickDgLsg}
+\end{align}
+\begin{Beispiel}[Beschleunigter Massenpunkt mit linearem Luftwiderstand]
+\begin{align*}
+m\dot{v} = \underbrace{F}_{\text{Beschleunigung}} - \underbrace{R\cdot
+v}_{\text{Luftwiderstand}}\\
+v =
+\underbrace{\frac{F}{R}}_{v_\infty}(1-e^{-t\frac{R}{m}})
++ v_0 e^{-t\frac{R}{m}}
+\end{align*}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(10,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-1,0)(10,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](0,4)(10,4)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](2,0)(2,3.46)
+ 
+ \psplot[linewidth=1.2pt,algebraic=true]{0}{10}{4-4*(2.72)^(-x)}
+ 
+ 
+ \rput(-0.3,-0.3){$0$}
+ \rput(2,-0.3){$m/R$}
+ 
+ \rput[r](-0.2,4){$v_\infty$}
+ 
+ \rput(9.7,-0.26){$t$}
+ \rput[r](-0.2,5.7){$v(t)$}
+ 
+\end{pspicture}
+\end{center}
+\end{Beispiel}
+
+\subsection{Nichtlineare Differentialgleichung 1. Ordnung}
+Die allgemeine Form lautet
+\begin{align}
+ \frac{dy}{dx} =  F(x,y),
+\end{align}
+und ist im Allgemeinen nicht geschlossen lösbar, außer in Spezialfällen, von
+denen wir einige untersuchen wollen.
+
+\subsubsection{Separierbare Differentialgleichungen}
+Falls $F(x,y)$ separierbar ist, d.h.
+\begin{align*}
+ F(x,y) = f(x) g(y),
+\end{align*}
+so können wir die Differentialgleichung umschreiben auf
+\begin{align*}
+ & \frac{y'}{g(y)} = f(x)\\
+  \overset{\text{integrieren mit }x}{\Rightarrow} &
+\int \dx \frac{y'}{g(y)} = \underbrace{\int \dy \frac{1}{g(y)}}_{G(y)} = \underbrace{\int \dx f(x)}_{H(x)+c}
+\end{align*}
+Falls $G(y)$ invertierbar ist, erhalten wir
+\begin{align*}
+ y(x) = G^{-1}(H(x)+c)
+\end{align*}
+
+\begin{Beispiel}
+Kettengleichung: Freihängendes Seil/Kette
+\begin{align*}
+y'' &= \alpha \sqrt{1+(y')^2}
+\end{align*}
+\begin{center}
+%\psset{unit=1cm}
+\begin{pspicture}(-6,-1)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-6,0)(6,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ 
+ \psplot[linewidth=1.2pt,algebraic=true]{-2.2}{0}{-0.2*x^3+2}
+ \psplot[linewidth=1.2pt,algebraic=true]{0}{2.2}{0.2*x^3+2}
+ \psline[linewidth=0.5pt,algebraic=true]{<->}(1,1.2)(2.5,4.8)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed]{->}(2,3.6)(3,3.6)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed]{->}(2,2.6)(2,4.6)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed]{->}(2,2.6)(2,4.6)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](1,2.6)(2,2.6)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](1,2.6)(1,1.2)
+ 
+ \rput(5.7,-0.26){$x$}
+ 
+ \rput[r](1.9,4.6){$F_g$}
+ \rput[l](3.1,3.8){$F_\perp$}
+ \rput[l](1,2.9){$F_\perp$}
+ \rput[r](0.9,1.4){$F_0$}
+ \rput[l](2.05,2.8){$\dy$}
+ \rput[lt](1.5,2.5){$\dx$}
+ 
+ \rput[l](0.2,5.7){$v(x) = \frac{1}{2}x^100$}
+ \end{pspicture}
+\end{center}
+Setze $u=y'$
+\begin{align*}
+& \frac{u'}{\sqrt{1+u^2}} = \alpha\\
+\Rightarrow & \int du \frac{1}{\sqrt{1+u^2}} = \int \dz
+\frac{\cosh(z)}{\sqrt{1+\sinh^2(z)}} = \int \dz \frac{\cosh(z)}{\cosh(z)} \\
+ & = z = 
+\arcsinh{u} = \int \dx \alpha = \alpha x + c_1\\ \Rightarrow & y' = u =
+\sinh(\alpha x + c_1)\\ \Rightarrow & y = \frac{1}{\alpha} \cosh(\alpha x + c_1)
++
+\tilde{c}
+\end{align*}
+\end{Beispiel}
+
+\par{\bf Bernoulli-Gleichung}
+\begin{equation*}
+y' = a(x)y + b(x)y^{\nu}
+\end{equation*}
+Mit einer geschickten Substitution kann diese Gleichung auf die Form einer
+inhomogenen Differentialgleichung gebracht werden.
+\begin{align*}
+\frac{y'}{y^{\nu}} = a(x)y^{1-\nu}+b(x)\\
+\frac{1}{1-\nu}\left(y^{1-\nu}\right)' = \frac{v'}{1-\nu}
+\end{align*}
+Setze $y^{1-\nu} = v$ und man erhält
+\begin{equation*}
+v' = (1-\nu)a(x)v+(1-\nu)b(x)
+\end{equation*}
+$\Rightarrow$ Löse mit dem Trick von Gleichung \ref{TrickDgLsg}
+
+
+\subsection{Lineare Differentialgleichungen höherer Ordnung}
+Die allgemeine Form ist
+\begin{align}
+ \sum \limits_{i=0}^{n} a_i(x)y^{(i)}(x) = b(x).
+\end{align}
+Die Lösung der Differentialgleichung ist eindeutig bestimmt durch das Anfangswertproblem
+\begin{align}
+ y(0) = y_0, y^{(1)}(0) = y_0^{(1)}, ..., y^{(n-1)}(0) = y_0^{(n-1)}
+\end{align}
+
+\begin{Beispiel}[Differentialgleichung 2. Ordnung]
+\begin{align}
+ \underbrace{L}_{\text{Induktion}} \ddot{I} + \underbrace{R}_{\text{Widerstand}}\dot{I} + \frac{1}{\underbrace{C}_{\text{Kapazität}}}I = \underbrace{\frac{dV}{dt}}_{\text{ext. Drive}} \; \text{ : elektrischer Schwingkreis}
+\end{align}
+ist durch die Vorgabe von $I(0)$ und $\dot{I}(0)$ bestimmt.
+\end{Beispiel}
+
+Allgemeiner Lösungsansatz
+\begin{itemize}
+  \item Finde $n$ unabhängige Lösungen $y_1(x), ..., y_n(x)$ für die homogene
+  Gleichung mit $b(x) = 0$.
+  \begin{align*}
+  \Rightarrow y_c(x) = C_1\,y_1(x)+ C_2\,y_2(x) + ... + C_n\,y_n(x)
+  \end{align*}
+  Lösung der homogenen Gleichung.
+  \item Finde eine partikuläre Lösung $y_p(x)$ der inhomogenen Gleichung mit
+  $b(x) \neq 0$.
+  \item Die allgemeine Lösung hat die Form
+  \begin{align}
+  y(x) = y_c(x) + y_p(x)
+  \end{align}
+\end{itemize}
+
+\subsubsection{Konstante Koeffizienten}
+{\bf Homogene Gleichung}
+\begin{align}
+ a_n \frac{d^ny}{dx^n} + a_{n-1} \frac{d^{n-1}y}{dx^{n-1}} + ... + a_1\frac{dy}{dx} + a_0y = 0
+\end{align}
+
+Mit dem Ansatz $y = e^{\lambda x}$ mit $\lambda \in \Co$ können wir die Differentialgleichung in eine algebraische Gleichung umwandeln:
+\begin{align*}
+ a_n\lambda^n + a_{n-1}\lambda^{n-1} + \ldots + a_1\lambda + a_0 = 0
+\end{align*}
+
+Die Gleichung hat genau $n$ Lösungen $\lambda_1 \ldots \lambda_n$. Es ist jetzt nötig, 3-Fälle zu unterscheiden:
+\begin{enumerate}
+  \item Alle $\lambda_i$ sind reell und verschieden. Somit sind $y_i(x) =
+  e^{\lambda ix}$ linear unabhängig und die Lösung hat die Form
+  \begin{align}
+  y_c(x) = C_1e^{\lambda_1 x}+ C_2e^{\lambda_2 x}+\ldots+ C_ne^{\lambda_n x}
+  \end{align}
+  \item Einige $\lambda_i$ sind komplex. Falls $a_i$ reell sind, so ist
+  $\overline{\lambda_i}$ ebenfalls eine Lösung. So können wir schreiben
+  $(\lambda_i = \alpha+i\beta)$
+  \begin{align}
+  y_i(x) &= C_i e^{(\alpha + i\beta)x} + \overline{C_i} e^{(\alpha - i\beta)x}\\
+  &= 2A e^{\alpha x}\cos{(\beta x + \varphi)}
+  \end{align}
+  \item Einige Lösungen sind mehrfache Nullstellen $\lambda_1 = \lambda_2 =
+  \ldots = \lambda_k \equiv \lambda$. Dann sieht man, dass die Funktionen
+  \begin{align*}
+  e^{\lambda x}, xe^{\lambda x}, x^2e^{\lambda x}, \ldots, x^{k-1}e^{\lambda x}
+  \end{align*}
+  ebenfalls Lösungen sind. Wir erhalten somit wieder $n$ unabhängige Lösungen.
+  \begin{align}
+  y_c = (C_1+C_2x+\ldots+C_kx^{k-1})e^{\lambda x} +
+  C_{k+1}e^{\lambda_{k+1}x}+\ldots+C_ne^{\lambda_nx}
+ \end{align}
+\end{enumerate}
+
+\begin{Beispiel}
+\begin{align*}
+&y''(x) - 2y' +y = 0\quad \text{ Ansatz } y = e^{\lambda x} \\
+\Rightarrow & (\lambda^2 -2\lambda +1)e^{\lambda x} = 0\\
+\Rightarrow & 0 = \lambda^2 -2\lambda +1 = (\lambda -1)^2\\
+\Rightarrow & e^x, xe^x \text{ sind Lösungen}
+\end{align*}
+\par
+\begin{info}
+$(xe^x)'' - 2(xe^x)' + xe^x = xe^x+2e^x-2(xe^x+e^x)+xe^x = 0$
+\end{info}
+\par
+Die Lösung ist somit $y_c(x) = (C_1+xC_2)e^x$.
+\end{Beispiel}
+
+{\bf Inhomogene Gleichung}
+\begin{align}
+ a_n\frac{d^ny}{dx^n} + \ldots + a_1\frac{dy}{dx} + a_0 = b(x)
+\end{align}
+
+Es gibt keine allgemeine Methode, die eine partikulär Lösung liefert. Für
+spezielle $b(x)$ helfen aber folgende Ansätze.
+\begin{enumerate}
+  \item $b(x) = Ae^{\Gamma x}$ mit $\Gamma$ reell oder komplex\\
+  Ansatz: $y_p(x) = Be^{\Gamma x}$
+  \item $b(x) = A_1\sin(\Gamma x) + A_2\cos(\Gamma x)$\\
+  Ansatz: $y_p(x) = B_1\sin(\Gamma x) + B_2\cos(\Gamma x)$
+  \item $b(x) = A_0 + A_1x+\ldots+A_nx^n$\\
+  Ansatz: $y_p(x) = B_0+B_1x+\ldots+B_nx^n$
+  \item Falls $b(x)$ eine Summe oder ein Produkt von obigen Formen ist, so ist der Ansatz ebenfalls eine Summe oder Produkt der entsprechenden Ansätze.
+\end{enumerate}
+
+\begin{Beispiel}
+ \begin{align*}
+  & y'' + y = \cos{2x}\\
+&\text{Ansatz: } y_p(x) = B_1\cos{2x} + B_2\sin{2x}\\
+\Rightarrow & -B_1 4\cos{2x} - B_2 4\sin{2x} + B_1\cos{2x} + B_2\sin{2x} = \cos{2x}
+ \end{align*}
+\begin{align*}
+ \Rightarrow & -4B_1 +B_1 = 1 & \Rightarrow  & B_1 = -\frac{1}{3}\\
+&-4B_2 +B_2 = 0 & & B_2 = 0\\
+\end{align*}
+\begin{align*}
+ \Rightarrow & y_p(x) = -\frac{1}{3}\cos{2x} & \text{ : partikulär Lösung}\\
+ \Rightarrow & y_c(x) = C_1\cos{x}+C_2\sin{x} & \text{ : homogene Lösung}
+\end{align*}
+\begin{align*}
+ \Rightarrow & \text{Vollständige Lösung:}\\
+  & y(x) = y_p(x)+y_c(x) = -\frac{1}{3}\cos{2x}+C_1\cos{x}+C_2\sin{x}
+\end{align*}
+\end{Beispiel}
+
+\begin{Bemerkung}
+ Die allgemeine Lösung folgt aus der Summe der partikulär Lösung $y_p$ und der
+ Lösung der homogenen Gleichung $y_c$.
+\begin{align}
+ y(x) = y_p(x) + y_c(x)
+\end{align}
+\end{Bemerkung}
+
+\subsection{Green'sche Funktion}
+Betrachte die inhomogene Differentialgleichung
+\begin{align}
+\frac{d^2}{dx^2}y + a\frac{d}{dx}y + by = f(x),
+\end{align}
+für einen allgemeinen Treiber $f(x)$. Die Lösung des homogenen Problems kennen
+wir.
+
+\par{\bf Frage} Gibt es einen speziellen Treiber $h(x,z)$, sodass wir mit einer
+Lösung von
+\begin{align}
+\frac{d^2}{dx^2}G(x,z) + a\frac{d}{dx}G(x,z) + bG(x,z) = h(x,z)
+\end{align}
+eine Lösung zur obigen Gleichung finden für einen beliebigen Treiber $f(x)$:
+\begin{align}
+y(x) = \int \limits_{-\infty}^{\infty} \dz G(x,z)f(z)
+\end{align}
+
+\begin{Bemerkung}
+Der Ansatz $y(x) = \int_{-\infty}^{\infty} \dz G(x,z)f(z)$ folgt aus der
+Linearität der Differentialgleichung:
+\begin{itemize}
+  \item Ist $y(x)$ Lösung zum Treiber $f(x)$\\
+  $\Rightarrow cy(x)$ ist Lösung zum Treiber $cf(x)$
+  \item Ist $y_1(x)$ Lösung zu $f(x)$ und $y_2(x)$ Lösung zu $g(x)$\\
+  $\Rightarrow y_1(x)+ y_2(x)$ ist Lösung zum Treiber $f(x) + g(x)$
+\end{itemize}
+\end{Bemerkung}
+
+Einsetzen von $y(x) = \int \limits_{-\infty}^{\infty}\dz G(x,z)f(z)$ in die
+Differentialgleichung liefert
+\begin{align}
+f(x) &= \frac{d^2}{dx^2}y(x) + a\frac{d}{dx}y(x) + by(x) \\
+&= \int
+\limits_{-\infty}^{\infty}\dz f(z)\left[
+\underbrace{\frac{d^2}{dx^2}G(x,z)+
+a\frac{d}{dx}G(x,z) + bG(x,z)}_{h(x,z)} \right]\\
+&= \int \limits_{-\infty}^{\infty} \dz f(z) h(x,z)
+\end{align}
+d.h., der spezielle Treiber $h(x,z)$ muss die Eigenschaft haben
+\begin{align}
+\int \limits_{-\infty}^{\infty}f(z)h(x,z) = f(x)
+\end{align}
+
+Die Funktion, die diese Eigenschaft besitzt wird in der Physik als {\em
+Dirac-Delta Funktion} bezeichnet, mit der Notation $h(x,z)\equiv \delta(x-z)$
+und ist mathematisch gesehen eine {\em Distribution} oder uneigentliche
+Funktion. Als nächstes untersuchen wir diese Funktion im Detail.
+
+\subsubsection{Dirac-$\delta$-Funktion}
+
+Die wichtigste Eigenschaft der $\delta$-Funktion ist
+\begin{align}
+\int \limits_{-\infty}^{\infty} \dx \delta(x-x_0) f(x) = f(x_0),
+\end{align}
+für alle Funktionen $f(x)$.
+\begin{info}
+$f(x)$ soll beliebig oft differenzierbar sein.
+\end{info}
+
+\par
+Wir können die $\delta$-Funktion beliebig genau approximieren mit der Funktion
+\begin{align}
+h_{\varepsilon}(x) = \frac{1}{\sqrt{\varepsilon\pi}}e^{-\frac{x^2}{\varepsilon}}
+\end{align}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(10,6)
+ \psaxes[labels=none,ticks=none]{->}(0,0)(-0.5,-0.5)(8,5)[\textbf{$x$},-90][\textbf{$y$},0]
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{0}{8}{8/(3.41)^0.5*(2.72)^(-(x-3)^2)}
+
+ \psxTick(3){$x_0$}
+ \psxTick(2){$x_0-\frac{\varepsilon}{2}$}
+ \psxTick(4){$x_0+\frac{\varepsilon}{2}$}
+ 
+ \rput[l](3.6,4.2){$h_\varepsilon(x-x_0)$}
+\end{pspicture}
+\end{center}
+Für kleine $\varepsilon$ gilt somit
+\begin{align*}
+&\int \limits_{-\infty}^{\infty} \dx h_{\varepsilon}(x-x_0)f(x) \\
+= &\int
+\limits_{-\infty}^{\infty} \dx h_{\varepsilon}(x-x_0)\left[
+f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2}(x-x_0)^2 + \sigma(x-xo) \right]
+\end{align*}
+Es gilt
+\begin{itemize}
+  \item
+\begin{align*}
+&\int \limits_{-\infty}^{\infty} \dx h_{\varepsilon}(x-x_0)f(x_0) = f(x_0) \int
+\limits_{-\infty}^{\infty}\dx
+\frac{1}{\sqrt{\varepsilon\pi}}e^{\frac{-(x-x_0)^2}{\varepsilon}}\\
+&\overset{z = \frac{x-x_0}{\sqrt{\varepsilon}}}{=} f(x_0)
+\underbrace{\int \limits_{-\infty}^{\infty}\dz \frac{1}{\sqrt{\pi}}
+e^{-z^2}}_{1} = f(x_0)
+\end{align*}
+
+\item
+\begin{align*}
+&\int \limits_{-\infty}^{\infty}h_{\varepsilon}(x-x_0)f'(x_0)(x-x_0) \\
+&\overset{z=x-x_0}{=} f'(x_0)\int \limits_{-\infty}^{\infty}\dz
+\frac{1}{\sqrt{\varepsilon\pi}}
+\underbrace{e^{-\frac{z^2}{\epsilon}}}_{\text{punktsymmetrisch}} z = 0
+\end{align*}
+
+\item
+\begin{align*}
+&\int \limits_{-\infty}^{\infty}
+h_{\varepsilon}(x-x_0)\frac{1}{2}f''(x_0)(x-x_0)\\
+&\overset{z=\frac{x-x_0}{\sqrt{\varepsilon}}}{=} \frac{1}{2} f''(x_0) \int
+\limits_{-\infty}^{\infty}\dz \varepsilon \frac{1}{\sqrt{\pi}} z^2e^{-z^2}\\
+&= \frac{1}{4}f''(x_0)\cdot\varepsilon\quad 
+\underset{\varepsilon\to0}{\rightarrow} 0
+\end{align*}
+\end{itemize}
+Somit folgt
+\begin{align}
+\int \limits_{-\infty}^{\infty}\dx h_{\varepsilon}(x-x_0)f(x) = f(x_0) +
+\frac{1}{4} f''(x_0)\varepsilon + \sigma(\varepsilon^2) \underset{\varepsilon\to0}{\rightarrow} f(x_0)
+\end{align}
+
+Die Frage ist somit, ob man das Integral mit dem Limes vertauschen kann
+\begin{align*}
+\int \limits_{-\infty}^{\infty}\dx \delta(x-x_0) f(x) &= f(x_0) =
+\lim_{\varepsilon\to0} \int \limits_{-\infty}^{\infty}\dx h_{\varepsilon}(x-x_0)
+f(x)\\
+&''='' \int \limits_{-\infty}^{\infty} \dx \lim_{\varepsilon\to0}
+h_{\varepsilon}(x-x_0)f(x)
+\end{align*}
+
+\begin{align*}
+\Rightarrow \delta(x-x_0) &''='' \lim_{\varepsilon\to0} h_{\varepsilon}(x-x_0)
+=
+\lim_{\varepsilon\to0}
+\frac{1}{\sqrt{\pi\varepsilon}} e^{\frac{-(x-x_0)^2}{\varepsilon}}\\
+& = \begin{cases}0 & x\neq x_0\\\infty & x = x_0\end{cases}
+\end{align*}
+
+Wir sehen, dass die $\delta$-Funktion keine eigentliche Funktion ist sondern,
+dass sie erst Sinn ergibt, indem man über sie integriert. Trotzdem ist es
+möglich, mit ihr als abstraktes Objekt zu rechnen.
+\par
+Eigenschaften der $\delta$-Funktion
+\begin{itemize}
+  \item $\int_{-\infty}^{\infty}\dx\delta(x) = 1$
+  \item $\int_{-\eta}^{\eta}\dx f(x)\delta(x) = f(0)$ für beliebige $\eta > 0$
+  \par
+  \begin{info}
+\begin{align*}
+&\int \limits_{-\eta}^{\eta}\dx f(x)\delta(x) = \lim_{\varepsilon\to0} \int
+\limits_{-\eta}^{\eta}\dx h_{\varepsilon}(x)f(x) \\
+&= \lim_{\varepsilon\to0}\left[\underbrace{\int \limits_{-\infty}^{\infty}\dx
+h_{\varepsilon}(x)f(x)}_{f(0)} - \underbrace{\int \limits_{-\infty}^{-\eta}\dx
+h_{\varepsilon}(x)f(x)}_{=0} - \underbrace{\int \limits_{\eta}^{\infty}\dx
+h_{\varepsilon}(x)f(x)}_{=0}\right]\\
+&= f(0)
+\end{align*}
+\end{info}
+\item $\delta(x) = \delta(-x)$\\
+\begin{info}
+$\int_{-\infty}^{\infty} \dx \delta(x)f(x) = f(0) = \int_{-\infty}^{\infty}
+\dx \delta(x)f(-x) = \int_{-\infty}^{\infty} \dx \delta(-x)f(x)$
+\end{info}
+\item $\delta(x)\cdot x = 0$\\
+\begin{info} $\int_{-\infty}^{\infty} \dx f(x)\,x\,\delta(x) = 
+\int_{-\infty}^{\infty} \dx g(x)\,\delta(x) = g(0) = f(0)\cdot 0 = 0$ 
+\end{info}
+\end{itemize}
+
+\begin{Beispiel}
+\par
+\begin{itemize}
+  \item $\int_{-\infty}^{\infty} \dx f(x)[\delta(x-1)+\delta(x+1)] = f(1)+f(-1)$
+  \item $\int_{a}^{b} \dx f(x) \delta(x-c) = \begin{cases}f(c) & a
+< c < b\\0 & c < a \text{ oder } c > b\end{cases}$
+\item $\int_{-1}^{2}\dx x^2 \delta(x-1) = 1$
+\item $\int_{-1}^{2}\dx x^2\delta(x+2) = 0$
+\item $\int_{-\infty}^{\infty}\dx e^{-x} \delta(x-y^2) = e^{-y^2}$
+\end{itemize}
+\end{Beispiel}
+
+Alternative Funktionsfolgen, die gegen die $\delta$-Funktion konvergieren
+\begin{itemize}
+  \item $\frac{1}{\pi}\sin{\frac{Nx}{x}} \qquad \text{ für } N \to \infty$
+  \item $\frac{1}{\pi}\frac{\varepsilon}{\varepsilon^2 + x^2} \qquad \text{ für
+  } \varepsilon \to 0$
+\end{itemize}
+\begin{center}
+\begin{pspicture}(-3,-1)(3,6)
+ \psset{xunit=.25,yunit=2} 
+ 
+ \psaxes[labels=none,ticks=none]{->}(0,0)(-11,-0.25)(11,2)[\textbf{$x$},-90][\textbf{$y$},0]
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{-10}{10}{sin(x)/x} 
+ \psyTick(1){$N$}
+ \rput[l](2,1){$\frac{1}{\pi}\sin\left(\frac{Nx}{x}\right)$}
+\end{pspicture}
+\begin{pspicture}(-3,-1)(3,6)
+ \psset{xunit=.25,yunit=2} 
+
+ \psaxes[labels=none,ticks=none]{->}(0,0)(-11,-0.25)(11,2)[\textbf{$x$},-90][\textbf{$y$},0]
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{-10}{10}{1/(x^2+1)}
+ \psyTick(1){$\frac{1}{\varepsilon}$}
+ \rput[l](2,1){$\frac{1}{\pi}\frac{\varepsilon}{\varepsilon^2+x^2}$}
+\end{pspicture}
+\end{center}
+
+\begin{Bemerkung}
+Mathematisch ist die $\delta$-Funktion eine Distribution.
+\begin{itemize}
+  \item Mit S bezeichnen wir den {\em Schwartz-Raum}. Für $f
+  \in S$ gilt, $f \in C^{\infty}$ und $x^{\alpha}f(x)
+  \underset{x\to\pm\infty}{\to} 0\quad \alpha \in \N_0$
+  \item Distributionen sind stetige lineare Abbildungen vom Schwartz-Raum in
+  die Menge der reellen Zahlen.
+  \begin{align*}
+  &T: f\in S \rightarrow \R\\
+  &\text{mit } T(\alpha f + \beta g) = \alpha T(f) + \beta T(g).
+  \end{align*}
+\end{itemize}
+\end{Bemerkung}
+
+\begin{Beispiel}
+\begin{itemize}
+  \item Für eine Funktion $h(x)$ erhalten wir die Distribution
+  $$H(f) \equiv \int \dx h(x)f(x)$$
+  \item Die Abbildung
+  $$f(x) \mapsto f(x_0)$$
+  ist gerade die $\delta$-Funktion.
+  \item Weitere Distributionen sind auch
+  $$f(x) \mapsto f'(x_0)$$
+  oft als $\delta'(x-x_0)$ bezeichnet.
+\end{itemize}
+\end{Beispiel}
+
+\subsubsection{Green'sche Funktion für den Oszillator}
+Die Differentialgleichung für die Green'sche Funktion lautet
+\begin{align}
+\frac{d^2}{dx^2}G(x,z) + a\frac{d}{dx}G(x,z) + bG(x,z) = \delta(x-z)
+\end{align}
+Integrieren wir diese Gleichung um eine kleine Umgebung
+$\int_{z-\varepsilon}^{z+\varepsilon} \dx$ erhalten wir
+\begin{align*}
+&\int \limits_{z-\varepsilon}^{z+\varepsilon} \dx \frac{d^2}{dx^2}G(x,z) + a\int
+\limits_{z-\varepsilon}^{z+\varepsilon} \frac{d}{dx}G(x,z) + b \int
+\limits_{z-\varepsilon}^{z+\varepsilon} \dx G(x,z)  = 1 \\
+\Leftrightarrow &
+\left[\frac{d}{dx} G(x,z)\right]_{z-\varepsilon}^{z+\varepsilon}
++ \left[G(x,z)\right]_{z-\varepsilon}^{z+\varepsilon}
++ G(z,z)\varepsilon
+\end{align*}
+Die Funktion $G(x,z)$ ist aber stetig bei $x = z$ und nur die Ableitung hat
+einen Sprung.
+\begin{center}
+\begin{pspicture}(-1,-1)(5.5,5)
+ \psaxes[labels=none,ticks=none]{->}(0,0)(-0.5,-0.5)(5,4)[$x$,-90][\textbf{
+ $G(x,z)$},0]
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{0}{2.5}{0.1*x^2+2}
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{2.5}{5}{0.1*(x-5)^2+2}
+ 
+ \psxTick(2.5){$z$}
+\end{pspicture}
+\end{center}
+Somit gilt für $\varepsilon \to 0$
+\begin{align}
+  \left[\frac{d}{dx} G(x,z)\right]_{x-\varepsilon}^{x+\varepsilon} =
+  G'(z+\varepsilon,z) - G'(z-\varepsilon,z) = 1
+\end{align}
+Da aber $\delta(x-z) = 0$ für $x\neq z$ gilt
+\begin{align}
+\frac{d^2}{dx^2} G(x,z) + a \frac{d}{dx} G(x,z) + bG(x,z) = 0 \quad x\neq z
+\end{align}
+und $G(x,z)$ kann konstruiert werden aus der Lösung der homogenen Gleichung mit
+obiger Bedingung für $x=z$.
+
+\begin{Beispiel}
+Green'sche Funktion zur Differentialgleichung für $x\in[0,\frac{\pi}{2}]$ mit
+\begin{align*}
+\frac{d^2}{dx^2} G(x,z) + G(x,z) = \delta(x-z) \quad G(0,z) = 0 \quad
+G(\frac{\pi}{2}, z) = 0
+\end{align*}
+\begin{align*}
+\text{Ansatz: } &G(x,z) = A(z)\sin{x} & x < z\\
+ & G(x,z) = B(z)\cos{x} & x > z
+\end{align*}
+Somit folgt:
+\begin{align*}
+\text{ Stetigkeit: } & A(z)\sin{z} - B(z)\cos{z} = 0\\
+\text{Springen in Ableitung: } & -A(z)\cos{z} + B(z)\sin{z} = -1
+\end{align*}
+\begin{align*}
+&A(z) = -\cos{z}\\
+&B(z) = -\sin{z}\\
+\end{align*}
+Die Green'sche Funktion hat die Form
+\begin{align*}
+G(x,z) = \begin{cases} -\sin{z}\cos{x} & x\ge z\\ -\cos{z}\sin{x} & x<z\end{cases}
+\end{align*}
+\begin{center}
+\begin{pspicture}(-1,-2.5)(5.5,3)
+ \psaxes[labels=none,ticks=none]{->}(0,0)(-0.5,-2)(5,2)[$x$,-90][\textbf{
+ $\frac{\partial}{\partial x}G(x,z)$},0]
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{0}{2.5}{0.1*x^2+1}
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{2.5}{5}{-0.1*(x-5)^2-1}
+ \psline[linewidth=0.5pt,linestyle=dashed,linecolor=lightgray](2.5,1.625)(2.5,-1.625)
+ \psxTick(2.5){$z$}
+\end{pspicture}
+\begin{pspicture}(-1,-2.5)(5.5,3)
+ \psaxes[labels=none,ticks=none]{->}(0,0)(-0.5,-2)(5,2)[$x$,-90][$y$,0]
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{0}{2}{-(1-(2.71)^(-x))}
+ \psplot[linewidth=1.2pt,algebraic=true,plotpoints=3600]{2}{4}{-(1-(2.71)^(x-4))}
+
+ \psxTick(2){$z$}
+ \psxTick(4){$\pi/2$}
+\end{pspicture}
+\end{center}
+\end{Beispiel}
+
+\begin{Beispiel}
+Finde eine partikulär Lösung zur Differentialgleichung auf dem Intervall
+$[0, \frac{\pi}{2}]$
+\begin{align*}
+y''(x) + y'(x) = \frac{1}{\sin{x}}
+\end{align*}
+\begin{align*}
+\Rightarrow y(x) & = \int \limits_{0}^{\frac{\pi}{2}} \dz \frac{1}{\sin{z}}
+G(x,z)\\
+& = -\cos{x}\int \limits_{0}^{x} \dz \frac{\sin{z}}{\sin{z}} - \sin{x} \int
+\limits_{x}^{\frac{\pi}{2}}\dz \frac{\cos{z}}{\sin{z}}\\
+& = -x\,\cos{x} + \sin{x}\,\ln{\sin{x}}
+\end{align*}
+\end{Beispiel}

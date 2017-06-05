@@ -1,0 +1,204 @@
+\section{Krummlinige Koordinaten}
+Die drei häufigsten Koordinatensysteme sind
+\begin{align*}
+&x,y,z : \text{ Kartesische Koordinaten}\\
+&r,\varphi,z : \text{ Zylinder Koordinaten}\\
+&r,\varphi,\vartheta : \text{ Kugel Koordinaten}\\
+\end{align*}
+Eine gemeinsame Eigenschaft dieser Systeme ist, dass sie orthogonal sind und,
+dass der Laplace-Operator separiert. (siehe später)
+\par
+Die Koordinaten Transformation hat im Allgemeinen die Form
+\begin{align*}
+&x_1 = x_1(u_1,u_2,u_3)\\
+&x_2 = x_2(u_1,u_2,u_3)\\
+&x_3 = x_3(u_1,u_2,u_3)\\
+&\vec{r}(u_1,u_2,u_3) = \begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}.
+\end{align*}
+Die Tangentenvektoren an die Koordinatenlinien sind definiert als
+\begin{align*}
+\vec{T}_i \equiv \vec{e}_{u_i} = \frac{1}{h_i}\frac{\partial\vec{r}}{\partial
+u_i}\qquad \text{ mit } h_i = \left|\frac{\partial\vec{r}}{\partial u_i} \right|
+\end{align*}
+Wir sind interessiert an orthogonalen Koordinatensystemen mit
+\begin{align*}
+\vec{e}_{u_i} \cdot \vec{e}_{u_j} = \delta_{ij} = \begin{cases}0 &
+i\neq j\\1 &i = j\end{cases}
+\end{align*}
+Somit bilden in jedem Punkt $\vec{r}$ die Vektoren $\vec{e}_{u_i}$ eien
+Orthonormierte Basis. Die Vektoren $\vec{e}_{u_i}$ hängen somit explizit vom
+Raumpunkt $\vec{r}$ ab.
+\begin{Bemerkung}
+Wir können auch schreiben
+\begin{align*}
+\vec{e}_{u_1} = \vec{e}_{u_2} \times \vec{e}_{u_3}
+\end{align*}
+\end{Bemerkung}
+Ein Skalarfeld $\phi(\vec{r})$ können wir einfach in den neuen Koordinaten
+ausdrücken
+\begin{align*}
+\phi(u_1,u_2,u_3) = \phi(\vec{r}(u_1,u_2,u_3)).
+\end{align*}
+Für ein Vektorfeld $\vec{A}(\vec{r})$ müssen wir zusätzlich die neue Basis
+$\vec{e}_{u_i}$ berücksichtigen.
+\begin{align*}
+\vec{A}(\vec{r}) = \sum \limits_{i=1}^{3} \vec{e}_{u_i} A_{u_i}(u_1,u_2,u_3).
+\end{align*}
+$A_{u_i}$ erhalten wir mittels dem Skalarprodukt
+\begin{align*}
+A_{u_i} = \vec{A}\cdot\vec{e}_{u_i}.
+\end{align*}
+\begin{Bemerkung}
+In den krummlinigen Koordinaten sind jetzt $A_{u_i}$ und $\vec{e}_{u_i}$ von
+$u_1,u_2,u_3$ abhängig.
+\begin{align*}
+\Rightarrow \partial_{u_j} \vec{A} = \sum \limits_{i=1}^{3}
+\left[\frac{\partial A_{u_i}}{\partial u_j} + A_{u_i} \frac{\partial
+\vec{e}_{u_i}}{\partial u_j}\right]
+\end{align*}
+\end{Bemerkung}
+\begin{Beispiel}
+Geschwindigkeitsvektor $\vec{v}$ in Zylinder-Koordinaten
+\begin{align*}
+\vec{v}(t) = \frac{d}{dt}\vec{r}(t) = \frac{d}{dt}\left(r\vec{e}_r +
+z\vec{e}_z\right) = \dot{r}\vec{e}_r + r\dot{\vec{e}}_r + \dot{z}\vec{e}_z +
+z\dot{\vec{e}}_z
+\end{align*}
+\end{Beispiel}
+Im Folgenden wollen wir untersuchen, wie sich die Ableitungsoperatoren
+transformieren.
+\begin{Definition}[Gradient]
+Die Komponente von $\nabla\phi$ in $\vec{e}_{u_i}$ ist
+\begin{align*}
+(\nabla\phi)_{u_i} &= \nabla\phi \cdot \vec{e}_{u_i} =
+\nabla\phi\cdot\frac{1}{h_{u_i}}\frac{\partial\vec{r}}{\partial u_i} =
+\frac{1}{h_{u_i}} \sum \limits_{j=1}^{3}\frac{\partial x_j}{\partial u_i}
+\frac{\partial \phi}{\partial x_j} \\
+&= \frac{1}{h_{u_i}}
+\partial_{u_i}\phi(\vec{r}(u_1,u_2,u_3)) =
+\frac{1}{h_{u_i}}\frac{\partial\phi}{\partial u_i}\\
+\Rightarrow  \nabla \phi &= \sum \limits_{i} \vec{e}_{u_i} \frac{1}{h_i}
+\frac{\partial \phi}{\partial u_i}
+\end{align*}
+\end{Definition}
+
+\begin{Definition}[Divergenz]
+Für die Divergenz in krumlinigen Koordianten gilt
+\begin{align*}
+\begin{split}
+\div \vec{A}(u_1,u_2,u_3) = \frac{1}{h_{u_1} h_{u_2}
+h_{u_3}}\big[\frac{\partial}{\partial u_1} \left(h_{u_2}h_{u_3}A_{u_1}\right)
++ \frac{\partial}{\partial u_2}\left(h_{u_1} h_{u_3} A_{u_2}\right) \\ +
+\frac{\partial}{\partial u_3} \left(h_{u_1} h_{u_2} A_{u_3}\right) \big]
+\end{split}
+\end{align*}
+\end{Definition}
+
+\begin{info}
+Betrachte den Anteil $\vec{e}_{u_i} A_{u_1}$
+\begin{align*}
+\nabla\cdot(\vec{e}_{u_1} A_{u_1}) &=
+\nabla\cdot((\vec{e}_{u_2} \times \vec{e}_{u_3})A_{u_1}) \\
+&= \nabla\cdot(h_{u_2} h_{u_3} A_{u_1} (\nabla u_2 \times \nabla u_3))\\
+&= \nabla(h_{u_2} h_{u_3} A_{u_1})\cdot(\nabla u_2 \times \nabla u_3) \\ &
+\quad + h_{u_2} h_{u_3} A_{u_1} \nabla \cdot (\nabla u_2 \times \nabla u_3)\\
+&= \frac{1}{h_{u_2} h_{u_3}}\vec{e}_{u_1}\cdot\nabla(h_{u_2} h_{u_3} A_{u_1})\\
+&= \frac{1}{h_{u_1} h_{u_2} h_{u_3}} \frac{\partial}{\partial u_1} (h_{u_2}
+h_{u_3} A_{u_1})
+\end{align*}
+und analog für die anderen Komponenten.
+\end{info}
+
+\begin{Definition}[Laplace Operator]
+Als wichtige Anwendung erhalten wir den Laplace Operator in krummlinigen
+Koordinaten
+\begin{align*}
+\nabla\phi(u_1,u_2,u_3) = \frac{1}{h_{u_1} h_{u_2}
+h_{u_3}}\big[\frac{\partial}{\partial u_1}\left(\frac{h_{u_2}
+h_{u_3}}{h_{u_1}} \frac{\partial \phi}{\partial u_1}\right) +
+\frac{\partial}{\partial u_2}\left(\frac{h_{u_1}
+h_{u_3}}{h_{u_2}} \frac{\partial \phi}{\partial u_2}\right) \\+
+\frac{\partial}{\partial u_3}\left(\frac{h_{u_1}
+h_{u_2}}{h_{u_3}} \frac{\partial \phi}{\partial u_3}\right)
+ \big]
+\end{align*}
+\end{Definition}
+
+\begin{Definition}[Rotaion]
+Zur Vollständigkeit noch die Rotaion
+\begin{align*}
+\rot \vec{A}(u_1,u_2,u_3) &= \frac{1}{h_{u_2}
+h_{u_3}}\vec{e}_{u_1}\left[\frac{\partial}{\partial u_2}\left(h_{u_3}
+A_{u_3}\right) - \frac{\partial}{\partial u_3}\left(h_{u_2}
+A_{u_2}\right)\right]\\
+& + \frac{1}{h_{u_1}
+h_{u_3}}\vec{e}_{u_2}\left[\frac{\partial}{\partial u_3}\left(h_{u_1}
+A_{u_1}\right) - \frac{\partial}{\partial u_1}\left(h_{u_3}
+A_{u_3}\right)\right]\\
+& + \frac{1}{h_{u_1}
+h_{u_2}}\vec{e}_{u_3}\left[\frac{\partial}{\partial u_1}\left(h_{u_2}
+A_{u_2}\right) - \frac{\partial}{\partial u_2}\left(h_{u_1}
+A_{u_1}\right)\right]
+\end{align*}
+\end{Definition}
+
+\subsection{Zylinderkoordinaten}
+Wir haben die Transformation
+\begin{align*}
+\vec{r} = \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}r\cos(\varphi)
+\\ r\sin(\varphi) \\ z\end{pmatrix}
+\end{align*}
+mit $0\le r<\infty, 0\le\phi<2\pi, -\infty<z<\infty$
+\begin{align*}
+&\vec{e}_r = \begin{pmatrix}\cos(\varphi) \\ \sin(\varphi) \\ 0\end{pmatrix}
+\qquad &h_r = 1\\
+&\vec{e}_\varphi = \begin{pmatrix}-\sin(\varphi) \\ \cos(\varphi) \\
+0\end{pmatrix} \qquad &h_\varphi = r\\
+&\vec{e}_z = \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}
+\qquad &h_z = 1\\
+\end{align*}
+\begin{align*}
+\nabla\phi &= \vec{e}_r \frac{\partial}{\partial r}\phi +
+\frac{1}{r}\vec{e}_\varphi\frac{\partial}{\partial \varphi}\phi + \vec{e}_z
+\frac{\partial}{\partial z}\phi\\
+\Delta\phi &= \left[\frac{1}{r}\partial_r r \partial_r +
+\frac{1}{r^2}\partial^2_\varphi + \partial^2_z \right]\phi \\
+&= \partial^2_r\phi + \frac{1}{r}\partial_r\phi +
+\frac{1}{r^2}\partial^2_\varphi\phi + \partial^2_z\phi\\
+\int \ dr^3\ &= \int \dphi \int \dr r \int \dz
+\end{align*}
+
+\subsection{Kugelkoordinaten}
+\begin{align*}
+\vec{r} = \begin{pmatrix}x \\ y \\ z\end{pmatrix} =
+\begin{pmatrix}r\cos(\varphi)\sin(\vartheta) \\ r\sin(\varphi)\sin(\vartheta) \\
+r\cos(\vartheta)\end{pmatrix}
+\end{align*}
+mit $0 \le r < \infty$, $0 \le \vartheta \le \pi$, $0 \le \varphi < 2\pi$.
+\begin{align*}
+\vec{e}_r = \begin{pmatrix}\cos(\varphi)\sin(\vartheta) \\
+\sin(\varphi)\sin(\vartheta) \\ \cos(\vartheta)\end{pmatrix},\qquad h_r = 1
+\end{align*}
+\begin{align*}
+\vec{e}_\vartheta = \begin{pmatrix}\cos(\varphi)\cos(\vartheta) \\
+\sin(\varphi)\cos(\vartheta) \\ -\sin(\vartheta)\end{pmatrix},\qquad h_\vartheta
+= r
+\end{align*}
+\begin{align*}
+ \vec{e}_\varphi = \begin{pmatrix}-\sin(\varphi) \\ \cos(\varphi) \\
+ 0\end{pmatrix},\qquad h_\varphi = r\sin(\vartheta)
+\end{align*}
+\begin{align*}
+\nabla\phi = \left[ \vec{e}_r\partial_r\phi +
+\frac{1}{r}\vec{e}_\vartheta\partial_\vartheta\phi +
+\frac{1}{r\sin(\vartheta)}\vec{e}_\varphi\partial_\varphi\phi \right]
+\end{align*}
+\begin{align*}
+\Delta\phi = \left[ \frac{1}{r^2}\partial_r(r^2\partial_r) +
+\frac{1}{r^2\sin(\vartheta)}\partial_\vartheta
+(\sin(\vartheta)\partial_\vartheta) +
+\frac{1}{r^2\sin^2(\vartheta)}\partial^2_\varphi \right]\phi
+\end{align*}
+\begin{align*}
+\int \dvecr = \int \dr r^2 \int \dtheta \sin(\vartheta) \int \dphi
+\end{align*}

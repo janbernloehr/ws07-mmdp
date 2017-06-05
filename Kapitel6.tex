@@ -1,0 +1,736 @@
+\section{Differenzial- und Integralrechnung mit mehreren Variablen}
+Die Verallgemeinerung der Ableitung für Funktionen mit mehreren Variablen wird mittels der {\em partiellen Ableitung} erreicht.
+\begin{itemize}
+  \item Funktion $f(x,y)$
+  \item partielle Ableitung
+  \begin{align*}
+&\frac{\partial f}{\partial x} = \lim \limits_{\Delta x\to0} \frac{f(x+\Delta x, y) - f(x,y)}{\Delta x}\\
+&\frac{\partial f}{\partial y} = \lim \limits_{\Delta y\to0} \frac{f(x, y+\Delta y) - f(x,y)}{\Delta y}
+\end{align*}
+\end{itemize}
+
+Die partielle Ableitung entspricht der normalen Ableitung wobei die weiteren Variablen fixiert werden.
+
+\begin{Bemerkung}
+Äquivalente Schreibweisen
+  \begin{align*}
+\frac{\partial f}{\partial x} \equiv \partial_x f \equiv f_x
+\end{align*}
+\end{Bemerkung}
+
+Manchmal gibt man die Variable, die fixiert werden soll, noch explizit an
+\begin{align*}
+\left(\frac{\partial f}{\partial x}\right)_y \qquad : \text{ partielle
+Ableitung nach $x$ mit $y$ fixiert}
+\end{align*}
+
+\begin{Beispiel}
+\begin{align*}
+& f(x,y) = x^3y - e^{xy}\\
+\Rightarrow\; & \partial_x f = 3x^2y - ye^{xy}\\
+&\partial_y f = x^3 - xe^{xy}\\
+&\partial^2_x f = \frac{\partial}{\partial x}\left( \frac{\partial}{\partial x}f\right) = 6xy - y^2e^{xy}\\
+&\partial^2_y f = \frac{\partial}{\partial y}\left( \frac{\partial}{\partial y}f\right) =-x^2e^{xy}\\
+&\partial_x\partial_y f = \frac{\partial}{\partial x}\left(\frac{\partial}{\partial y}f\right) = 3x^2 - e^{xy} - xye^{xy}\\
+&\partial_y\partial_x f = \frac{\partial}{\partial y}\left(\frac{\partial}{\partial x}f\right) = 3x^2 - e^{xy} - xye^{xy}\\
+\end{align*}
+\end{Beispiel}
+
+\begin{Bemerkung}
+\par\par
+\begin{itemize}
+\item Es gilt allgemein, dass die Reihenfolge der partiellen Ableitungen
+  keine Rolle spielt.
+  \begin{align}
+\frac{\partial^2}{\partial x\partial y} f(x,y) = \frac{\partial^2}{\partial y \partial x} f(x,y)
+\end{align}
+\item Die Verallgemeinerung für Funktionen mit mehr als zwei Variablen folgt
+analog.
+\end{itemize}
+\end{Bemerkung}
+
+\begin{Beispiel} $f(x,y,z) = xyz$
+\begin{align*}
+\Rightarrow\;\partial_x f &= yz\\
+\partial_y f &= xz\\
+\partial_z f &= xy
+\end{align*}
+\end{Beispiel}
+
+
+\par{\bf Kettenregel}\\
+Die Variablen $x,y$ der Funktion $f(x,y)$ hängen von
+einem Parameter $t$ ab $\Rightarrow x(t), y(t)$.\\ Die Ableitung der Funktion $f(x(t), y(t))$ nach $t$ ist somit gegeben durch
+\begin{align}
+\frac{\partial f}{\partial t} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial t}
+\end{align}
+\begin{info}
+\begin{align*}
+\Delta f(x,y) & = \frac{\partial f}{\partial x}\Delta x + \frac{\partial
+f}{\partial y}\Delta y +\sigma(\Delta x, \Delta y)\\ &=  \frac{\partial
+f}{\partial x}
+\frac{\partial x}{\partial t}\Delta t +  \frac{\partial f}{\partial y}
+\frac{\partial y}{\partial t}\Delta t\\ \Rightarrow \frac{df}{dt} & \cong \lim \limits_{\Delta t \to 0} \frac{\Delta f}{\Delta t} =  \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} +  \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}
+\end{align*}
+\end{info}
+
+\begin{Beispiel}
+\begin{itemize}
+  \item $f(x,y) = xe^{-y}$ mit $x = 1+t, y= t^3$\\
+  \begin{align*}
+\frac{d}{dt} f(x(t), y(t)) &=\underbrace{e^{-y(t)}}_{\frac{\partial
+f}{\partial x}} \cdot\underbrace{1}_{\frac{dx}{dt}} -  \underbrace{
+x(t)e^{-y(t)}}_{\frac{\partial f}{\partial y}} \underbrace{3t^2}_{\frac{dy}{dt}}\\ &= \left[1-3t^2(1+t)\right]e^{-t^3}
+\end{align*}
+\item $f(x,y) = \int_{0}^{y} \dx e^{-zx^2}$
+\begin{align*}
+&\frac{\partial}{\partial y}f = e^{-zy^2}\\
+&\frac{\partial}{\partial z}f = \int \limits_{0}^{y} \dx
+\frac{\partial}{\partial z} e^{-zx^2} = \int \limits_{0}^{y} \dx
+-x^2\;e^{-zx^2} \\
+&y=t^2\qquad z=t\\
+&\frac{d}{dt}\left[ \int \limits_{0}^{t^2} \dx e^{-tx^2} \right] =
+e^{-zy^2}\cdot2t - \left[\int \limits_{0}^{y} \dx
+x^2\;e^{-zx^2}\right]\cdot1
+\end{align*}
+\end{itemize}
+\end{Beispiel}
+
+\subsection{Totales Differential}
+Wir betrachten die Funktion $f(x,y)$ auf $\R^2$. Das totale Differential ist eine lineare Abbildung, die jedem Vektor $\vec v = (v_x, v_y)$ eine reelle Zahl zuordnet.
+
+\begin{align}
+\left[df\right](\vec v) = \frac{d}{dt} f(x+v_xt, y+v_yt) = \frac{\partial f}{\partial x}v_x + \frac{\partial f}{\partial y} v_y
+\end{align}
+
+Insbesondere haben wir die speziellen Differentiale
+\begin{align*}
+&[dx](\vec v) = v_x\\
+&[dy](\vec v) = v_y
+\end{align*}
+und somit können wir schreiben
+\begin{align}
+\left[df\right](\vec v) =  \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y} dy
+\end{align}
+
+\begin{Bemerkung}
+\par
+\begin{itemize}
+  \item Das totale Differential wird in der Physik oft als infinitesimale Änderung von $f$ unter infinitesimalem $dx$ und $dy$ interpretiert.
+  \item Es ist jedoch besser es zu interpretieren, dass für $\vec v = (\Delta x, \Delta y)$ gilt
+  \begin{align*}
+\Delta f \cong [df](\vec v) = \frac{\partial f}{\partial x}\Delta x +
+\frac{\partial f}{\partial y}\Delta y
+\end{align*}
+\end{itemize}
+\end{Bemerkung}
+Ein Differential $A(x,y)dx+B(x,y)dy$ heißt exakt, wenn die Funktion $f(x,y)$ existiert mit
+\begin{align*}
+&A(x,y) = \frac{\partial f}{\partial x}\\
+&B(x,y) = \frac{\partial f}{\partial y}
+\end{align*}
+Eine notwendige Bedingung, dass ein Differential exakt ist (und auf
+topologisch sehr vielen Gebieten auch hinreichend), ist
+\begin{align}
+\frac{\partial A(x,y)}{\partial y} = \frac{\partial B(x,y)}{\partial x}
+\end{align}
+\begin{Beispiel}
+\begin{itemize}
+  \item $y\dx + x\dy \Rightarrow f(x,y) = xy+c$
+  \item $y\dx + 3x\dy \Rightarrow$ inexakt
+  \item Anwendung finden wir vor allem in der Thermodynamik
+  \begin{align*}
+&dF = - \underbrace{S}_{\text{Entropie}}\underbrace{dT}_{\text{Änderung der Temperatur}} - \underbrace{p}_{\text{Druck}}dV : \text{ Freie Energie}\\
+&\Rightarrow \left(\frac{\partial F}{\partial T} \right)_V = -S \qquad \left(\frac{\partial F}{\partial V} \right)_T = -p\\
+&\Rightarrow \left(\frac{\partial S}{\partial V} \right)_T =
+\left(\frac{\partial p}{\partial T} \right)_V \qquad :\text{ Maxwell Relation}\\
+\end{align*}
+\end{itemize}
+\end{Beispiel}
+
+\subsection{Variablen Transformation}
+Wir betrachten die Funktion $f(x_1, \ldots, x_n)$. Die Variablen $x_i$ sind aber ebenfalls Funktionen von $n$-anderen Variablen $u_i$:
+\begin{align*}
+x_i = x_i(u_1,\ldots,u_n)
+\end{align*}
+aus der Kettenregel folgt somit
+\begin{align}
+\frac{\partial f}{\partial u_i} = \sum \limits_{j=1}^{n} \frac{\partial f}{\partial x_j} \frac{\partial x_j}{\partial u_i} = \sum \limits_{j=1}^{n}\left( \frac{\partial x_j}{\partial u_i} \right)\frac{\partial f}{\partial x_j}
+\end{align}
+
+\begin{Beispiel}[Polarkoordinaten]
+\begin{align*}
+&x = r\cdot\cos\varphi\\
+&y = r\cdot\sin\varphi\\
+\end{align*}
+\begin{align*}
+\Rightarrow\;r &= \sqrt{x^2 - y^2}\\
+\varphi &= \arctan{\frac{y}{x}}\\
+\end{align*}
+\begin{align*}
+\Rightarrow \frac{\partial r}{\partial x} &= \frac{x}{\sqrt{x^2+y^2}} = \cos{\varphi} \qquad \frac{\partial r}{\partial y}  =\sin{\varphi}\\
+\frac{\partial \varphi}{\partial x} &= \frac{-(\frac{y}{x^2})}{1+(\frac{y}{x})^2} = -\frac{\sin\varphi}{r}\\
+\frac{\partial \varphi}{\partial y} &= \frac{\frac{1}{x}}{1+(\frac{y}{x})^2} = \frac{\cos\varphi}{r}
+\end{align*}
+\begin{center}
+\begin{pspicture}(-1,-1)(5,5)
+ \psline[linecolor=framecolor](-1,-1)(-1,5)(5,5)(5,-1)(-1,-1)
+ \psaxes[labels=none,ticks=none]{->}(0,0)(-0.5,-0.5)(4.5,4.5)[$x$,-90][$y$,0]
+ \psline[linewidth=1.2pt,algebraic=true](0,0)(3,3)
+ \psarc{->}(0,0){1}{0}{45}
+ 
+ \rput(2,2.4){$r$}
+ \rput(0.6,0.2){$\varphi$}
+\end{pspicture}
+\end{center}
+Somit gilt
+\begin{align*}
+&\partial_x = \cos(\varphi)\partial_r - \frac{\sin\varphi}{r}\partial_\varphi\\
+&\partial_y = \sin(\varphi)\partial_r - \frac{\cos\varphi}{r}\partial_\varphi\\
+\end{align*}
+\end{Beispiel}
+
+\subsection{Mehrdimensionale Integrale}
+Das bestimmte Integral
+\begin{align*}
+\int \limits_{a}^{b} \dx f(x)
+\end{align*}
+kann aufgefasst werden als Integral über die eindimensionale Region $a\le x \le
+b$ der Funktion $f(x)$.
+\begin{center}
+\begin{pspicture}(0,-1)(5,1)
+ \psline[linecolor=framecolor](0,-1)(0,5)(5,5)(5,-1)(0,-1)
+ \psaxes[labels=none,yAxis=false,linewidth=1pt,ticks=none]{->}(0,0)(0,0)(4.5,0)[$x$,-90][,0]
+ 
+ \psxTick(1){$a$}
+ \psxTick(4){$b$}
+\end{pspicture}
+\end{center}
+Mehrdimensionale Integrale erweitern dies nun auf höherdimensionale Regionen:
+\par
+Das bestimmte Integral von $f(x,y)$ auf der Fläche $A$ ist definiert als
+\begin{align}
+I = \int \limits_{A}\dx\dy f(x,y).
+\end{align}
+\begin{center}
+\begin{pspicture}(-3,-3)(4,3)
+ \psline[linecolor=framecolor](-3,-3)(-3,3)(4,3)(4,-3)(-3,-3)
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-2.5,-2.5)(3.5,2.5)[$x$,-90][$y$,0]
+ 
+ \psccurve[fillstyle=solid,fillcolor=lightgray]%
+(-2,-1.5)(-1.5,0)(-2,1.5)%
+(0,1.25)(3,1.5)(2.5,0)%
+(3,-1)
+\rput(2,2){$A$}
+\end{pspicture}
+\end{center}
+Die formale Definition folgt analog zum Riemann'schen Integral über den
+Grenzwert.
+\begin{align}
+S = \sum \limits_{p=1}^{N} f(x_p, y_p)\Delta A_p
+\end{align}
+\begin{center}
+\begin{pspicture}(-3,-3)(4,3)
+ \psline[linecolor=framecolor](-3,-3)(-3,3)(4,3)(4,-3)(-3,-3)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-2.5,-2.5)(3.5,2.5)[$x$,-90][$y$,0]
+ 
+ \psccurve[fillstyle=solid,fillcolor=lightgray]%
+(-2,-1.5)(-1.5,0)(-2,1.5)%
+(0,1.25)(3,1.5)(2.5,0)%
+(3,-1)
+\rput(2,2){$A$}
+
+\psline(-1.2,-2.05)(-1.2,1.59)
+\psline(-0.5,-2.25)(-0.5,1.35)
+\psline(-1.56,-0.3)(2.63,-0.3)
+\psline(-2.05,-1.4)(2.7,-1.4)
+
+\rput[l](-0.4,0){$(x_p,y_p)$}
+\rput[r](-0.6,-0.8){$A_p$}
+\end{pspicture}
+\end{center}
+
+Unterteile die Fläche $A$ in $N$ Unterflächen $\Delta A_p \quad p = 1\ldots N$
+und wähle einen beliebigen Punkt $(x_p,y_p)$ in $A_p$. Falls die Summe $S$ gegen einen eindeutigen Wert konvergiert für $\Delta A_p \to 0$, existiert das Integral mit
+\begin{align}
+I = \int \limits_{A} \dx\dy f(x,y) = \lim \limits_{\Delta A_p \to 0} S
+\end{align}
+Der bequemen Weg das Integral zu berechnen ist zuerst das Integral über einen horizontalen Streifen zu berechnen
+\begin{align*}
+\left[\int \limits_{x_1(y)}^{x_2(y)} \dx f(x,y) \right]\dy
+\end{align*}
+und im zweiten Schritt das Integral über $y$ zu berechnen
+\begin{align*}
+I = \int \limits_{c}^{d} \dy \left(\int \limits_{x_1(y)}^{x_2(y)} \dx f(x,y) \right)
+\end{align*}
+\begin{center}
+\begin{pspicture}(-4,-3)(4,3)
+ \psline[linecolor=framecolor](-4,-3)(-4,3)(4,3)(4,-3)(-4,-3)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-3.5,-2.5)(3.5,2.5)[$x$,-90][$y$,0]
+ 
+ \psccurve[fillstyle=solid,fillcolor=lightgray]%
+ (-2,1.2)(0,1)(2,1.4)(2,-1.4)(0,-1.2)(-2,-1.2)
+
+\rput(2,2){$A$}
+
+\psline[linewidth=0.5pt](-2.42,-0.2)(2.52,-0.2)
+\psline[linewidth=0.5pt](-2.25,-0.8)(2.4,-0.8)
+
+\psline[linewidth=0.5pt,linestyle=dashed](0,1.53)(1.7,1.53)
+\psline[linewidth=0.5pt,linestyle=dashed](0,-1.56)(1.7,-1.56)
+
+\psline[linewidth=0.5pt,linestyle=dashed](-2.38,-0.5)(-2.38,-1.4)
+\psline[linewidth=0.5pt,linestyle=dashed](2.48,-0.5)(2.48,-1.4)
+
+\psxTick(2.55){}
+\psxTick(-2.45){}
+\rput[r](-2.6,0.2){$a$}
+\rput[l](2.6,0.2){$b$}
+
+\rput[r](-0.15,-1.6){$c$}
+\rput[r](-0.15,1.6){$d$}
+
+\rput(-2.38,-1.7){$x_1(y)$}
+\rput(2.48,-1.7){$x_2(y)$}
+
+\rput(2.8,-0.5){$\dy$}
+\end{pspicture}
+\end{center}
+
+\begin{Bemerkung}
+Als Alternative kann auch zuerst das Integral über $y$ berechnet werden und im
+zweiten Schritt über $x$.
+\begin{center}
+\begin{pspicture}(-4,-3)(4,3)
+ \psline[linecolor=framecolor](-4,-3)(-4,3)(4,3)(4,-3)(-4,-3)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-3,-2.5)(3.5,2.5)[$x$,-90][$y$,0]
+ 
+ % Kartoffel
+ \psccurve[fillstyle=solid,fillcolor=lightgray]%
+ (-2,1.2)(0,1)(2,1.4)(2,-1.4)(0,-1.2)(-2,-1.2)
+
+% Flächenrahmen
+\psline[linewidth=0.5pt](-2.1,-1.1)(-2.1,1.1)
+\psline[linewidth=0.5pt](-1.8,-1.35)(-1.8,1.33)
+
+% Begrenzungsstriche y1,y2
+\psline[linewidth=0.5pt,linestyle=dashed](-1.95,1.25)(-2.8,1.25)
+\psline[linewidth=0.5pt,linestyle=dashed](-1.95,-1.25)(-2.8,-1.25)
+
+% Begrenzungsstriche c,d
+\psline[linewidth=0.5pt,linestyle=dashed](0,1.53)(1.7,1.53)
+\psline[linewidth=0.5pt,linestyle=dashed](0,-1.56)(1.7,-1.56)
+
+\psxTick(2.55){}
+\psxTick(-2.45){}
+
+\rput[r](-2.6,0.2){$a$}
+\rput[l](2.6,0.2){$b$}
+
+\rput[r](-0.15,-1.6){$c$}
+\rput[r](-0.15,1.6){$d$}
+
+
+\rput(2,2){$A$}
+\rput[r](-2.9,1.25){$y_1(x)$}
+\rput[r](-2.9,-1.25){$y_2(x)$}
+
+\rput(-1.95,1.7){$\dy$}
+\end{pspicture}
+\end{center}
+\end{Bemerkung}
+
+\begin{Beispiel}
+\begin{itemize}
+  \item Die Fläche $A$ sei das Quadrat mit Seitenlänge 1 und $f(x,y) = xy^2$
+  \begin{center}
+\begin{pspicture}(-1,-1)(3,3)
+ \psline[linecolor=framecolor](-1,-1)(-1,3)(3,3)(3,-1)(-1,-1)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-0.5,-0.5)(2.5,2.5)[$x$,-90][$y$,0]
+ 
+% Quadratramen
+\psline[linewidth=1.2pt](0,2)(2,2)
+\psline[linewidth=1.2pt](2,0)(2,2)
+
+\psxTick(2){$1$}
+\psyTick(2){$1$}
+
+\end{pspicture}
+\end{center} 
+  \begin{align*}
+&\int \limits_{A} \dx\dy xy^2 = \int \limits_{0}^{1} \dy \int \limits_{0}^{1}
+\dx xy^2 = \int \limits_{0}^{1} \dy y^2 \left(\int \limits_{0}^{1} \dx
+x \right) \\
+& \int \limits_{0}^{1} \dy y^2 \left[\frac{1}{2}x^2\right]_{0}^{1}
+= \frac{1}{2}\int\limits_{0}^{1} \dy y^2 = \frac{1}{6}
+\end{align*}
+\item Die Fläche $A$ des Dreiecks beschränkt durch die Linien $x=0,y=0$ $x+y = 1$
+\begin{center}
+\begin{pspicture}(-1,-1)(3,3)
+ \psline[linecolor=framecolor](-1,-1)(-1,3)(3,3)(3,-1)(-1,-1)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-0.5,-0.5)(2.5,2.5)[$x$,-90][$y$,0]
+ 
+% Quadratramen
+\psline[linewidth=1.2pt](0,2)(2,0)
+
+\psxTick(2){$1$}
+\psyTick(2){$1$}
+
+\rput[l](1.2,1.2){$x+y=1$}
+
+\end{pspicture}
+\end{center}
+\begin{align*}
+\int \limits_{A} \dy\dy xy^2 &= \int \limits_{0}^{1} \dy y^2 \int \limits_{0}^{1-y} \dx x = \int \limits_{0}^{1}\dy y^2 \left(\left[ \frac{1}{2}x^2\right]_{0}^{1-y}\right) \\
+&= \int \limits_{0}^{1}\dy \frac{1}{2} y^2 (1-y)^2 = \frac{1}{6} - \frac{1}{4} + \frac{1}{10} = \frac{10-15+6}{60}\\
+&= \frac{1}{60}
+\end{align*}
+\end{itemize}
+\end{Beispiel}
+
+\subsection{Variablen Transformation}
+
+Wir betrachten das Integral auf dem Bereich $A$
+\begin{align*}
+I = \int \limits_{A} \dx \dy f(x,y)
+\end{align*}
+wobei die Variablen $x(u,v), y(u,v)$ ebenfalls Funktionen von den Variablen $u,v$ sind.
+\begin{align*}
+\Rightarrow \; \hat{f}(u,v) = f(x(u,v),y(u,v))
+\end{align*}
+Im Folgenden wollen wir untersuchen, wie das Integral in den neuen Variablen aussieht.
+\begin{center}
+\begin{pspicture}(-1,-1)(6,6)
+ \psline[linecolor=framecolor](-1,-1)(-1,6)(6,6)(6,-1)(-1,-1)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-0.5,-0.5)(5.5,5.5)[$x$,-90][$y$,0]
+ 
+ % Kartoffel
+ \psccurve[fillstyle=solid,fillcolor=lightgray]%
+ (0.5,3.5)(2,4)(4,4.5)(4,3)(5,2)(2,1)(1.5,2)
+ 
+ \psbezier[linecolor=black]%
+(0.5,2)(1.5,3)%
+(4,4.5)(4.5,4.5)
+ \psbezier[linecolor=black]%
+(0.5,1.5)(1.5,2.5)%
+(4,4)(4.5,4)
+ \psbezier[linecolor=black]%
+(0.5,1)(1.5,2)%
+(4,3.5)(4.5,3.5)
+
+ \psbezier[linecolor=black]%
+(1,4.4)(2,4.5)%
+(3,1)(2.5,0.5)
+ \psbezier[linecolor=black]%
+(1.5,4.4)(2.5,4.5)%
+(3.5,1)(3,0.5)
+ \psbezier[linecolor=black]%
+(2,4.4)(3,4.5)%
+(4,1)(3.5,0.5)
+
+\psdots(3.5,4.62)
+
+\rput(3.5,5){$(x_0,y_0)$}
+
+\rput(4.5,2){$A$}
+\rput(0.5,2.6){$C$}
+
+\rput(4.5,0.5){$u = \text{const}$}
+\rput(5,3.2){$v = \text{const}$}
+ %\pscurve[linewidth=0.5pt,linecolor=black](1,1)(2.5,3.5)(4,4)%
+
+\end{pspicture}
+\begin{pspicture}(-1,-1)(6,6)
+ \psline[linecolor=framecolor](-1,-1)(-1,6)(6,6)(6,-1)(-1,-1)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-0.5,-0.5)(5.5,5.5)[$x$,-90][$y$,0]
+ 
+ % Kartoffel
+ \psccurve[fillstyle=solid,fillcolor=lightgray]%
+ (1,0.5)(1,3)(3,2.5)(4.5,3)(4.5,1)(3,1)
+ 
+ \psline(1,1)(2,1)(2,2)(1,2)(1,1)
+ 
+ 
+\psdots(2,2.85)
+
+\rput(2.4,3.2){$(u_0,v_0)$}
+
+\rput(4.5,2){$A'$}
+\rput(0.5,2.6){$C'$}
+
+\rput[l](2.1,1.5){$\Delta v$}
+\rput(1.5,0.75){$\Delta u$}
+ %\pscurve[linewidth=0.5pt,linecolor=black](1,1)(2.5,3.5)(4,4)%
+
+\end{pspicture}
+\end{center}
+
+
+\par
+Zuerst müssen wir den Integrationsbereich $A$ in den neuen Integrationsbereich $A'$ umformen.\\
+D.h., der Bereich $A$ ist beschränkt mit der geschlossenen Kontur $C$. Der Integrationsbereich $A'$ in den neuen Variablen ist beschränkt mit der Kontur $C'$:
+\begin{itemize}
+  \item $(u_0,v_0)\in C' \Rightarrow \left( x_0(u_0,v_0), y_0(u_0,v_0)\right)
+  \in C$
+  \item $(u,v) \in A' \Rightarrow (x(u,v),y(u,v)) \in A$
+\end{itemize}
+Die Integration in den $x,y$ Koordinaten ist der Limes von kleinen Volumenelementen.
+\begin{center}
+\begin{pspicture}(-0.5,-0.5)(5,5)
+ \psline[linecolor=framecolor](-0.5,-0.5)(-0.5,5)(5,5)(5,-0.5)(-0.5,-0.5)
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-0.5,-0.5)(4.5,4.5)[$x$,-90][$y$,0]
+ 
+ % Kartoffel
+ \psbezier%
+ (1,1)(1.2,2.5)(1.8,3.6)(2,4)
+ \psbezier%
+ (3,1)(3.2,2.5)(3.8,3.6)(4,4)
+  \psbezier%
+ (0.5,1)(1.2,2)(3.6,1.3)(4,1.5)
+ \psbezier%
+ (0.8,2.8)(1.5,3.8)(3.9,3.1)(4.3,3.3)
+ %\psline(1,1)(2,1)(2,2)(1,2)(1,1)
+ 
+ \psline[linewidth=0.5pt]{->}(1.06,1.4)(1.25,2.8)
+ \psline[linewidth=0.5pt]{->}(1.06,1.4)(2.5,2)
+ \psline[linewidth=0.5pt,linestyle=dashed](2.5,2)(2.69,3.4)
+ \psline[linewidth=0.5pt,linestyle=dashed](1.25,2.8)(2.69,3.4)
+ 
+ \rput[r](1,2){$\vec{e}_v$}
+ \rput[l](2.5,1.8){$\vec{e}_u$}
+ 
+ \rput(2,2.5){$\mathrm{d}A_{uv}$}
+ 
+ \psarc(1.06,1.4){0.5}{22}{83}
+ 
+\end{pspicture}
+\begin{pspicture}(-0.5,-0.5)(5,5)
+ \psline[linecolor=framecolor](-0.5,-0.5)(-0.5,5)(5,5)(5,-0.5)(-0.5,-0.5)
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-0.5,-0.5)(4.5,4.5)[$x$,-90][$y$,0]
+ 
+ \psline(1.5,1.5)(1.5,3.5)(3.5,3.5)(3.5,1.5)(1.5,1.5)
+ 
+ \rput[r](1.2,2.5){$\Delta v$}
+ \rput(2.5,1){$\Delta u$}
+ 
+\end{pspicture}
+\end{center}
+\par
+Daher müssen wir die Fläche $dA_{uv}$ für ein kleines Quadrat $\Delta u \cdot \Delta v$ berechnen: $dA_{uv}$ ist ein Parallelogramm aufgespannt mit
+\begin{align*}
+&\vec{e_u} = \begin{pmatrix}\partial_u x(u,v)\\\partial_uy(uv,)\end{pmatrix} \qquad : \text{ Tangentenvektor an die Linie } v=const\\
+&\vec{e_v} = \begin{pmatrix}\partial_v x(u,v)\\\partial_vy(uv,)\end{pmatrix} \qquad : \text{ Tangentenvektor an die Linie } u=const\\
+\end{align*}
+\begin{align*}
+\Rightarrow\; dA_{uv} &= \Delta u \cdot \Delta v \cdot
+|\vec{e_u}||\vec{e_v}||\sin{\varphi}|\\ 
+&= \underbrace{\left|\frac{\partial x}{\partial u}\frac{\partial y}{\partial v}
+- \frac{\partial x}{\partial v}\frac{\partial y}{\partial u}\right|}_{J
+\text{ : Jacobian}}
+\underbrace{\Delta u \cdot \Delta v}_{du\;dv}
+\end{align*}
+Somit folgt aus der Definition des Integrals
+\begin{align}
+I &= \int \limits_{A} \dx \dy f(x,y) = \lim \limits_{\Delta Ap\to 0} \sum \limits_{p=1}^{N} f(x_p,y_p)\Delta Ap\\ \nonumber
+&= \lim \limits_{\Delta u\Delta v\to 0} \sum \limits_{p=1}^{N} f(x(u_p,v_p),
+y(u_p,v_p))\left|\frac{\partial x}{\partial u}\frac{\partial
+y}{\partial v}-\frac{\partial x}{\partial v}\frac{\partial y}{\partial
+u}\right|\Delta u \cdot \Delta v\\ \nonumber &= \int \limits_{A'}\du \dv
+f(x(u,v),y(u,v))\left|\frac{\partial x}{\partial u}\frac{\partial
+y}{\partial v}-\frac{\partial x}{\partial v}\frac{\partial y}{\partial
+u}\right|\\ \nonumber &=\int \limits_{A'} \du\dv \hat{f}(u,v)J(u,v)
+\end{align}
+mit dem {\em Jacobian}
+\begin{align}
+J(u,v) = \left|\frac{\partial x}{\partial u}(u,v)\frac{\partial y}{\partial
+v}(u,v) - \frac{\partial x}{\partial v}(u,v)\frac{\partial y}{\partial
+u}(u,v)\right|
+\end{align}
+
+\begin{Beispiel}
+\begin{align*}
+&\int\limits_{0}^{1}\dx\int\limits_{0}^{1}\dy \frac{1}{\sqrt{1-x^2}}\frac{1}{\sqrt{1-y^2}}\\
+&\big[ J(\varphi,\vartheta) = \cos(\varphi)\cos(\vartheta) \big]\\
+= & \int\limits_{0}^{\frac{\pi}{2}} d\varphi \int\limits_{0}^{\frac{\pi}{2}}
+d\vartheta \cos{\varphi}\cos{\vartheta}\,
+\frac{1}{\sqrt{1-\sin^2{\varphi}}\sqrt{1-\cos^2{\vartheta}}}\\ = & \left( \frac{\pi}{2} \right)^2
+\end{align*}
+\end{Beispiel}
+
+\par{\bf Polar Koordinaten}
+\begin{align*}
+&x = r\cos{\varphi}\\
+&y = r\sin{\varphi}\\
+\end{align*}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(5,5)
+ \psline[linecolor=framecolor](-1,-1)(-1,5)(5,5)(5,-1)(-1,-1)
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-0.5,-0.5)(4.5,4.5)[$x$,-90][$y$,0]
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(3,3)
+ 
+ \psarc[linewidth=.5pt](A){1}{0}{45}
+ 
+ \rput(3.2,2.4){$r$}
+ \rput(0.7,0.2){$\varphi$}
+\end{pspicture}
+\end{center}
+\begin{align*}
+\Rightarrow \; J(r,\varphi) &= \left|\frac{\partial x}{\partial r}
+\frac{\partial y}{\partial \varphi} - \frac{\partial x}{\partial
+\varphi}\frac{\partial y}{\partial r}\right| \\ &= |\cos(\varphi)r\cos(\varphi)
+- \sin(\varphi)(-1)r\sin(\varphi)| = r
+\end{align*}
+\begin{align}
+\Rightarrow \; \int\limits_{A}\dx\dy f(x,y) &= \int \limits_{A'}d\varphi\,dr\; r\,f(r\cos(\varphi), r\sin(\varphi)) \\ \nonumber
+&= \int \limits_{A'} d\varphi\,dr\; r \hat{f}(r,\varphi)
+\end{align}
+
+\begin{Beispiel}
+\begin{align*}
+&f(x,y) = e^{-(x^2+y^2)}\\
+&A:= \text{ Kreis mit Radius } R
+\end{align*}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-3,-3)(3,3)
+ \psline[linecolor=framecolor](-3,-3)(-3,3)(3,3)(3,-3)(-3,-3)
+ \pscircle[fillstyle=solid,fillcolor=lightgray](0,0){2}
+ 
+ \psaxes[labels=none,ticks=none]{->}%
+ (0,0)(-2.5,-2.5)(2.5,2.5)[$x$,-90][$y$,0]
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(1.41,1.41)
+ 
+ \rput(0.8,1.1){$R$}
+\end{pspicture}
+\end{center}
+\begin{align*}
+\Rightarrow &\hat{f}(r,\varphi) = e^{-r^2}\\
+I &= \int\limits_{A}\dx\dy e^{-(x^2+y^2)} = \int \limits_{A'} d\varphi\,dr\;re^{-r^2}\\
+&= \int \limits_{0}^{2\pi} d\varphi \int \limits_{0}^{R} dr\; re^{-r^2} = 2\pi \int \limits_{0}^{R} dr\;re^{-r^2}\\
+&= 2\pi \left[\frac{1}{2}e^{-r^2}\right]_{0}^{R} = \pi\left(1-e^{-R^2}\right)
+\end{align*}
+\end{Beispiel}
+Als Anwendung können wir jetzt das Integral
+\begin{align*}
+f = \int \limits_{-\infty}^{\infty} \dx e^{-x^2}
+\end{align*}
+berechnen:
+\begin{align*}
+F^2 &= \left(\int \limits_{-\infty}^{\infty}\dx e^{-x^2}\right)^2 = \left(\int \limits_{-\infty}^{\infty}\dx e^{-x^2}\right)\left(\int \limits_{-\infty}^{\infty}\dy e^{-y^2}\right)\\
+&= \int \limits_{-\infty}^{\infty}\dx \int \limits_{-\infty}^{\infty}\dy e^{-(x^2+y^2)} = \int\limits_{0}^{2\pi}d\varphi\;\int\limits_{0}^{\infty}dr\;re^{-r^2} = \pi\\
+\Rightarrow & F= \int \limits_{-\infty}^{\infty}\dx e^{-x^2} = \sqrt{\pi}
+\end{align*}
+Die Verallgemeinerung der Variablen Transformation in höheren Dimensionen ergibt:
+\begin{align*}
+f(x_1,\ldots,x_n)\qquad x_i(u_i,\ldots,u_j)
+\end{align*}
+\begin{align*}
+I &= \int\limits_{A} dx_1\,\ldots,dx_n\qquad f(x_1,\ldots,x_n) \\
+&= \int\limits_{A'}
+du_1\,\ldots,du_n\qquad \hat{f}(u_1,\ldots,u_n)\ J(u_1,\ldots,u_n)
+\end{align*}
+Der Jacobian ist stets durch die Variablentransformationsmatrix gegeben
+\begin{align*}
+M = \begin{pmatrix} \frac{\partial x_1}{\partial u_1} & \ldots & \frac{\partial
+x_n}{\partial u_1} \\ \vdots & \vdots & \vdots \\ \frac{\partial x_1}{\partial
+u_n} & \ldots & \frac{\partial x_n}{\partial u_n} \end{pmatrix} \qquad n\times
+n\text{ Einträge},
+\end{align*}
+wobei $J = \operatorname{det}M : \text{Determinante von $M$ (siehe Lineare
+Algebra)}$.
+\par
+In der dritten Dimension lautet er
+\begin{align*}
+M = \begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial y}{\partial u} & \frac{\partial z}{\partial u}\\
+\frac{\partial x}{\partial v} & \frac{\partial y}{\partial v} & \frac{\partial z}{\partial v}\\
+\frac{\partial x}{\partial w} & \frac{\partial y}{\partial w} & \frac{\partial z}{\partial w}\end{pmatrix}
+\end{align*}
+und
+\begin{align*}
+J\ =\; &\partial_ux(\partial_vy\partial_wz-\partial_wy\partial_vz) \\
+&- \partial_uy(\partial_vx\partial_wz - \partial_wx\partial_vz) \\
+&+\partial_uz(\partial_vx\partial_wy-\partial_wx\partial_vy)
+\end{align*}
+
+\par{\bf Kugelkoordinaten}
+\begin{align*}
+x &= r\cos(\varphi)\sin(\vartheta)\\
+y &= r\sin(\varphi)\cos(\vartheta)\\
+z &= r\cos(\vartheta)\\
+\Rightarrow\;r &= \sqrt{x^2+y^2+z^2}
+\end{align*}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-3,-3)(5,5)
+ \psline[linecolor=framecolor](-3,-3)(-3,5)(5,5)(5,-3)(-3,-3)
+ \psline[arrowsize=4pt]{->}(0,0)(0,4.5)
+ \psline[arrowsize=4pt]{->}(0,0)(4.5,0)
+ \psline[arrowsize=4pt]{->}(0,0)(-2.5,-2.5)
+
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](0,0)(2,-2)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](-2,-2)(2,-2)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](2,-2)(4,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](2,-2)(2,2)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](0,4)(2,2)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(2,2)
+ 
+ \rput(2.2,2.2){$\vec r$}
+ 
+ 
+ \rput(-2.7,-2.5){$x$}
+ \rput(4.5,0.3){$y$}
+ \rput(-0.3,4.5){$z$}
+ 
+ \psarc(0,0){1.5}{45}{90}
+ \psarc(0,0){1}{225}{315}
+ 
+ \rput(0,-0.7){$\varphi$}
+ \rput(0.3,0.7){$\vartheta$}
+  
+\end{pspicture}
+\end{center}
+Die Fläche $r = const$ beschreibt eine Kugel mit Zentrum $(0,0,0)$ und Radius
+$r$.
+\begin{itemize}
+  \item $r\in[0,\infty)$
+  \item $\varphi\in[0,2\pi)$
+  \item $\vartheta\in[0,\pi)$
+\end{itemize}
+
+\begin{align*}
+I = \int\limits_{A}\dx\dy\dz f(x,y,z) = \int\limits_{A'}d\varphi\,d\vartheta\,\sin(\vartheta)\,dr\;r^2\hat{f}(r,\varphi,\vartheta)
+\end{align*}
+
+\begin{Beispiel}
+Volumen der Kugel: $A = \{(x,y,z) \;|\; x^2 + y^2 + z^2 \le R^2\}$
+\begin{align*}
+\int \limits_{A}\dx\dy\dz 1 &= \underbrace{\int \limits_{0}^{2\pi}
+d\varphi}_{2\pi} \underbrace{\int \limits_{0}^{\pi} d\vartheta\;
+\sin{\vartheta}}_{2} \underbrace{\int \limits_{0}^{R} dr\;
+R^2}_{\frac{1}{3}\pi R^3} \\
+&= \frac{4\pi}{3}R^3
+\end{align*}
+\end{Beispiel}

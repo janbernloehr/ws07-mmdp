@@ -1,0 +1,644 @@
+\section{Vektoranalysis}
+Wir sind interessiert an Funktionen von $\R^m\to\R^n$.
+\begin{itemize}
+ \item $f(x)$: reelle Funktion
+ \item $f(\vec{r})$: skalares Feld $\phi(\vec{r}), E(\vec{r})$
+ \item $\vec{f}(x)$: Raumkurve, $\vec{x}(t), \vec{v}(t)$
+ \item $\vec{f}(\vec{r})$: Vektorfeld, $\vec{F}(\vec{r}), \vec{E}(\vec{r})$
+\end{itemize}
+Ableiten eines Vektors:
+\begin{align*}
+ \vec{x}(t) &= \begin{pmatrix}x_1(t)\\x_2(t)\\ \vdots\\x_n(t)\end{pmatrix} =
+ \sum \limits_{i=1}^{n} x_i(t) \vec{e}_i\\ \Rightarrow \frac{d}{dt}\vec{x}(t) &= \begin{pmatrix} \dot{x}_1(t) \\  \dot{x}_2(t) \\ \vdots \\ \dot{x}_n(t) \end{pmatrix} = \sum \limits_{i=1}^{n} \dot{x}_i(t) \vec{e}_i
+\end{align*}
+\begin{align*}
+ \vec{A}(\vec{r}) &= \begin{pmatrix}A_1(\vec{r})\\A_2(\vec{r})\\
+ \vdots\\A_n(\vec{r})\end{pmatrix} = \sum \limits_{i=1}^{n}
+ A_i(\vec{r})\vec{e}_i\\ \Rightarrow  \frac{\partial}{\partial x}\vec{A}(\vec{r}) &= \begin{pmatrix}\partial_x A_1(\vec{r})\\ \partial_x A_2(\vec{r})\\ \partial_x A_3(\vec{r}) \end{pmatrix} = \sum \limits_{i=1}^{n} \frac{\partial}{\partial x} A_i(\vec{r}) \vec{e_i}
+\end{align*}
+
+\begin{Bemerkung}
+ Mittels Kettenregel ermitteln wir das Verhalten von verschiedenen Punkten
+ \begin{itemize}
+  \item
+  $\frac{d}{du}(\phi \vec{a}) = \phi \frac{d\vec{a}}{du} + \left(\frac{d\phi}{du}\right)\vec{a}$
+  \item
+  $\frac{d}{du}(\vec{a}\cdot\vec{b}) = \vec{a} \frac{d\vec{b}}{du} + \left(\frac{d\vec{a}}{du}\right)\vec{b}$
+  \item
+  $\frac{d}{du}(\vec{a}\times\vec{b}) = 
+   \left(\frac{d\vec{a}}{du}\right)\times\vec{b} +  \vec{a} \times \left(
+   \frac{d\vec{b}}{du}\right)$
+ \end{itemize}
+\end{Bemerkung}
+\begin{Beispiel}{\bf  Kugelkoordinaten}
+\begin{align*}
+ \vec{r}(r,\varphi,\vartheta) = \begin{pmatrix}r\cos(\varphi)\sin(\vartheta)\\r\sin(\varphi)\sin(\vartheta)\\r\cos(\vartheta)\end{pmatrix}
+\end{align*}
+\begin{align*}
+ \Rightarrow \vec{e}_r &= \frac{d\vec{r}}{dr} = \begin{pmatrix}\cos(\varphi)\sin(\vartheta)\\\sin(\varphi)\sin(\vartheta)\\\cos(\vartheta)\end{pmatrix}\\
+ \vec{e}_\varphi &= \frac{d\vec{r}}{d\varphi} = \begin{pmatrix}-r\sin(\varphi)\sin(\vartheta)\\r\cos(\varphi)\sin(\vartheta)\\0\end{pmatrix}\\
+ \vec{e}_\vartheta &= \frac{d\vec{r}}{d\vartheta} = \begin{pmatrix}r\cos(\varphi)\cos(\vartheta)\\r\sin(\varphi)\cos(\vartheta)\\-r\sin(\vartheta)\end{pmatrix}
+\end{align*}
+
+\begin{align*}
+\Rightarrow &|\vec{e}_\varphi| = |\vec{e}_\vartheta| = r\\
+&|\vec{e}_r| = 1\\
+&\vec{e}_r\cdot\vec{e}_\varphi = \vec{e}_r\cdot\vec{e}_\vartheta =
+\vec{e}_\varphi\cdot\vec{e}_\vartheta = 0
+\end{align*}
+\end{Beispiel}
+
+\subsection{Linien- und Oberflächenintegrale}
+
+Ein Linienintegral ist gegeben durch Ausdrücke von der Form
+\begin{align*}
+I = \int \limits_{C} \dvecr\vec{A}(x,y,z),
+\end{align*}
+wobei $C$ eine Kurve im Raum darstellt. Die Kurve ist parametrisiert durch
+einen Parameter $t$.
+\begin{align*}
+&[t_0,t_1] \to \R^3\qquad t \mapsto \vec{r}(t) \in C
+\end{align*}
+mit $\vec{r}(t_0) = \vec{r}_A,\; \vec{r}(t_1) = \vec{r}_B$. Die Berechnung des
+Linienintegrals erfolgt dann mittels
+\begin{align*}
+\dvecr&= \frac{d}{dr}\vec{r}(t) \cdot \dt\\
+\Rightarrow I &= \int \limits_{t_0}^{t_1} \dt \left[ \frac{d}{dt}\vec{r}(t)
+\right]\cdot \vec{A}(\vec{r}(t))
+\end{align*}
+
+\begin{Beispiel}
+Die Arbeit entlang eines Weges $\vec{r}(t)$ im Kraftfeld $\vec{F}(\vec{r})$
+\begin{align*}
+W = \int \limits_{C} \dvecr \vec{F}(\vec{r})
+\end{align*}
+\end{Beispiel}
+
+\begin{Bemerkung}
+Das Integral ist unabhängig von der Parametrisierung der Kurve $C$:
+\begin{align*}
+t = f(s) \Rightarrow \vec{r}(f(s)) \equiv \vec{\hat{r}}(s)
+\end{align*}
+\begin{align*}
+\Rightarrow I &= \int \limits_{C} \dvecr \vec{A}(\vec{r}) = \int
+\limits_{t_0}^{t_1} \dt \left[ \frac{d\vec{r}}{dt}\right]
+\vec{A}(\vec{r}(t))\\
+& \overset{dt = f'(s)ds,t = f(s)}{=} \int \limits_{s_0}^{s_1} \ds \underbrace{f'
+\left[ \frac{d\vec{r}}{dt} \right]}_{\frac{d\vec{r}}{dt}} \vec{A}(\vec{r}(t))
+\end{align*}
+\end{Bemerkung}
+
+\begin{Beispiel}
+\begin{align*}
+\vec{F} &= \frac{1}{x^2+y^2}\begin{pmatrix}-y \\ x\end{pmatrix}\\
+\vec{r}(\varphi) &= R\begin{pmatrix}\cos(\varphi) \\ \sin(\varphi)
+\end{pmatrix}\\
+\frac{d}{d\varphi}\vec{r} &= R \begin{pmatrix}-\sin(\varphi) \\ \cos(\varphi)
+\end{pmatrix}
+\end{align*}
+\begin{align*}
+\Rightarrow I &= \int \limits_{0}^{2\pi} \dphi R \begin{pmatrix}-\sin(\varphi) \\ \cos(\varphi)
+\end{pmatrix} \begin{pmatrix}-\sin(\varphi) \\ \cos(\varphi)
+\end{pmatrix} \frac{R}{(\cos^2(\varphi)+\sin^2(\varphi))R^2}\\
+&= \int \limits_{0}^{2\pi} \dphi = 2\pi
+\end{align*}
+\end{Beispiel}
+
+\begin{Bemerkung}{\bf Weitere Linienintegrale}
+\begin{align*}
+\int \limits_{C} \dvecr f(\vec{r}) = \int \limits_{t_0}^{t_1} \dt
+f(\vec{r}(t)) \frac{d\vec{r}}{dt} \text{ : Vektorgröße}
+\end{align*}
+{\bf Bogenlänge}
+\begin{align*}
+&\int \limits_{C} \ds = \int \limits_{t_0}^{t_1} \dt
+\left|\frac{d\vec{r}(t)}{dt}\right|\\ \Rightarrow  &\int \limits_{C} \ds
+\phi(\vec{r})
+\text{ : Skalare Größe}\\ &\int \limits_{C} \ds \vec{F}(\vec{r}) \text{ : Vektorgröße}
+\end{align*}
+\end{Bemerkung}
+
+\begin{Beispiel}[Länge einer Geraden]
+\begin{align*}
+&\vec{r}(t) = \begin{pmatrix}t\\ \sin(\varphi) t\end{pmatrix}\qquad 0\le
+t\le1\\ &\int \limits_{C} \ds = \int \limits_{0}^{1} \dt \sqrt{1+\sin(\varphi)} =
+\sqrt{1+\sin^2(\varphi)}
+\end{align*}
+\end{Beispiel}
+\begin{Beispiel}[Umfang eines Kreises]
+\begin{align*}
+ &\vec{r}(\varphi) =
+R\begin{pmatrix}\cos(\varphi)\\ \sin(\varphi) \end{pmatrix}\\
+ &L = \int \limits_{C} \ds = \int \limits_{0}^{2\pi} \dphi
+ R\sqrt{\sin^2(\varphi) + \cos^2(\varphi)} = R\cdot2\pi
+ \end{align*}
+\end{Beispiel}
+
+Eine Fläche im $\R^3$ können wir darstellen mit Hilfe von zwei Parametern.
+\begin{align*}
+\vec{r}(u,v) = \begin{pmatrix}x(u,v)\\y(u,v)\\z(u,v)\end{pmatrix}
+\end{align*}
+
+\begin{Beispiel}
+Eine Ebene aufgespannt durch $\vec{a}$ und $\vec{b}$ durch den Punkt $\vec{r}_0$
+hat die Form
+\begin{align*}
+\vec{r}(u,v) = \vec{r}_0 + u\vec{a} + v\vec{b}.
+\end{align*}
+Eine Kugel mit dem Radius $R$
+\begin{align*}
+\vec{r}(\varphi, \vartheta) =
+\begin{pmatrix}\cos(\varphi)\sin(\vartheta)\\\sin(\varphi)\sin(\vartheta)\\\cos(\vartheta)\end{pmatrix}.
+\end{align*}
+\end{Beispiel}
+
+Die Vektoren
+\begin{align*}
+&\vec{e}_u = \frac{\partial}{\partial u} \vec{r}(u,v)\\
+&\vec{e}_v = \frac{\partial}{\partial v} \vec{r}(u,v)\\
+\end{align*}
+beschreiben die Tangentenvektoren an die Linien auf der Fläche mit $v=const$
+und $u=const$.\\
+Das Flächendifferential $dA$ in einem Punkt hat somit die Form
+\begin{align*}
+dA = |\vec{e}_u(u,v) \times \vec{e}_v(u,v)| \overset{du\ dv}{=}
+\left|\frac{d\vec{r}}{du}(u,v) \times \frac{d\vec{r}}{dv}(u,v)\right|du\ dv
+\end{align*}
+Somit ist der Flächeninhalt einer Fläche im $\R^3$ gegeben durch
+\begin{align*}
+F_B = \int \int \limits_{B} \du \dv \left|\frac{d}{du}\vec{r}(u,v) \times
+\frac{d}{dv}\vec{r}(u,v)\right|
+\end{align*}
+\begin{Beispiel}{Darstellung der Fläche}
+\begin{align*}
+\vec{r}(u,v) = \begin{pmatrix}1\\0\\0\end{pmatrix} + u
+\begin{pmatrix}-1\\1\\0\end{pmatrix} + v \begin{pmatrix}-1\\0\\1\end{pmatrix}
+\end{align*}
+\begin{align*}
+\Rightarrow & \vec{e}_u = \begin{pmatrix}-1\\1\\0\end{pmatrix}\\
+& \vec{e}_v = \begin{pmatrix}-1\\0\\1\end{pmatrix}\\
+\Rightarrow & \left|\frac{d\vec{r}}{du}(u,v) \times
+\frac{d\vec{r}}{dv}(u,v)\right| =
+\left|\begin{pmatrix}1\\1\\1\end{pmatrix}\right| =
+\sqrt{3}
+\end{align*}
+\begin{align*}
+F_B = \int \limits_{0}^{1} \dv \int \limits_{0}^{1-v} \du \sqrt{3} = \int
+\limits_{0}^{1} \dv \sqrt{3}(1-v) = \frac{\sqrt{3}}{2}
+\end{align*}
+\end{Beispiel}
+Bei einem Oberflächenintegral wird jetzt jeder Punkt auf der Oberfläche mit
+einer Funktion gewichtet.
+\begin{align*}
+\int \limits_{S} \ds \phi(\vec{r}) = \int \limits_{B} \du \dv
+\phi(\vec{r}(u,v)) \left|\frac{d\vec{r}}{du}(u,v) \times
+\frac{d\vec{r}}{dv}(u,v)\right| \text{ : Skalares Integral}
+\end{align*}
+Es ist jedoch auch möglich vektorielle Oberflächenintegrale zu definieren.
+Insbesondere ist das Oberflächenelement
+\begin{align*}
+d\vec{A} = \frac{d\vec{r}}{du} \times
+\frac{d\vec{r}}{dv} du dv = \vec{n} dA
+\end{align*}
+eine Vektorgröße, wobei der Einheitsvektor $\vec{n}$ senkrecht auf der
+Oberfläche steht.
+\begin{align*}
+\vec{n} = \frac{\frac{d\vec{r}}{du} \times
+\frac{d\vec{r}}{dv}}{\left| \frac{d\vec{r}}{du} \times
+\frac{d\vec{r}}{dv} \right|}
+\end{align*}
+Die Richtung von $\vec{n}$ hängt von der Orientierung der Oberfläche ab. Bei
+geschlossenen Flächen, wie z.B. einer Kugel, wird die Orientierung normalerweise
+so gewählt, dass $\vec{n}$ nach außen zeigt.
+
+\begin{Beispiel}[Kugel]
+\begin{align*}
+&\vec{r}(\vartheta,\varphi) =
+\begin{pmatrix}\cos(\varphi)\sin(\vartheta) \\
+\sin(\varphi)\sin(\vartheta) \\ \cos(\vartheta)\end{pmatrix}\\
+&\vec{e}_\varphi = \frac{\partial \vec{r}}{\partial \varphi} =
+\begin{pmatrix}-\sin(\varphi)\sin(\vartheta) \\ \cos(\varphi)\sin(\vartheta) \\
+0\end{pmatrix}\\
+&\vec{e}_\vartheta = \frac{\partial \vec{r}}{\partial \vartheta} =
+\begin{pmatrix}\cos(\varphi)\cos(\vartheta) \\ \sin(\varphi)\cos(\vartheta) \\
+-\sin(\vartheta)\end{pmatrix}\\
+\Rightarrow & \vec{e}_\vartheta \times \vec{e}_\varphi =
+\begin{pmatrix}\cos(\varphi)\sin^2(\vartheta) \\ \sin(\varphi)\sin^2(\vartheta)
+\\ \cos(\vartheta)\sin(\vartheta)\end{pmatrix} = \sin(\vartheta) \begin{pmatrix}\cos(\varphi)\sin(\vartheta) \\ \sin(\varphi)\sin(\vartheta)
+\\ \sin(\vartheta)\end{pmatrix}\\
+&\left| \vec{e}_\vartheta \times \vec{e}_\varphi \right| = |\sin(\vartheta)|\\
+\Rightarrow & \vec{n} = \begin{pmatrix}\cos(\varphi)\sin(\vartheta) \\
+\sin(\varphi)\sin(\vartheta) \\ \cos(\vartheta)\end{pmatrix} =
+\vec{r}(\vartheta, \varphi)
+\end{align*}
+\end{Beispiel}
+
+Wir finden jetzt die weiteren Oberflächenintegrale
+\begin{align*}
+&\int \limits_{S} \dvecs \vec{F}(\vec{r}) = \int \limits_{B} \du\dv
+\vec{F}(u,v) \cdot \left( \frac{\partial \vec{r}}{\partial u} \times
+\frac{\partial \vec{r}}{\partial v}\right) \text{ : skalare Größe}\\
+&\int \limits_{S} \dvecs \phi(\vec{r}) = \int \limits_{B} \du\dv
+\phi(u,v) \left( \frac{\partial \vec{r}}{\partial u} \times
+\frac{\partial \vec{r}}{\partial v}\right) \text{ : Vektorgröße}\\
+&\int \limits_{S} \dvecs \times \vec{F}(\vec{r}) = \int \limits_{B} \du\dv
+ \left( \frac{\partial \vec{r}}{\partial u} \times
+\frac{\partial \vec{r}}{\partial v}\right) \times \vec{F}(u,v) \text{ :
+Vektorgröße}\\
+\end{align*}
+
+\begin{Beispiel}
+\begin{itemize}
+\item  Der Tragflügel eines Flugzeugs erzeugt durch seine Form und den Luftstrom
+verschiedene Drücke auf der Unter- und Oberseite. Bezeichnen wir mit
+$p(\vec{r})$ das erzeugte Druckfeld, so ist der Auftrieb des Flugzeugs gegeben
+durch
+\begin{align*}
+\vec{F} = \int \limits_{S} \dvecs  p(\vec{r}) \text{ : wobei $S$ die
+Oberfläche der Tragflächen ist.}
+\end{align*}
+\item Eine Flüssigkeit fließt mit einem Geschwindigkeitsfeld
+$\vec{v}(\vec{r})$. D.h. jedem Punkt $\vec{r}$ ordnen wir die lokale
+Geschwindigkeit der Flüssigkeit zu. Zudem hat sie eine Massendichte
+$\rho(\vec{r})$.\\
+Die lokale Masse, die pro Zeiteinheit durch die Oberfläche fließt, ist
+gegeben durch
+\begin{align*}
+M = \int \limits_{S} \dvecs \cdot \vec{v}(\vec{r})\rho(\vec{r}).
+\end{align*}
+\end{itemize}
+\end{Beispiel}
+
+\subsection{Ableitungsoperatoren}
+\begin{Definition}[Gradient]
+Ein Skalarfeld $\phi(\vec{r})$ ordnet jedem Punkt $\vec{r}$ im Raum eine reelle
+Zahl zu. Der Gradient des Skalarfeldes ist definiert als
+\begin{align*}
+\nabla \phi(\vec{r}) = \frac{\partial \phi}{\partial x}\vec{e}_x +
+\frac{\partial \phi}{\partial y}\vec{e}_y + \frac{\partial \phi}{\partial
+z}\vec{e}_z.
+\end{align*}
+Somit ist $\nabla \phi(\vec{r})$ ein Vektorfeld. In seinen Komponenten hat es
+die Form (in der natürlichen Basis)
+\begin{align*}
+\nabla \phi(\vec{r}) = \begin{pmatrix}\partial_x\phi \\
+\partial_y\phi \\ \partial_z\phi\end{pmatrix}.
+\end{align*}
+\end{Definition}
+
+Das Verhalten des Skalarfeldes von einem Punkt $\vec{r}_0$ lässt sich mit dem
+Gradienten sehr einfach beschreiben.
+\begin{align*}
+&\vec{r}(s) = \vec{r}_0 + s\vec{a}\\
+\Rightarrow & \frac{\partial \phi(\vec{r}(s))}{ds} = \vec{a} \cdot \nabla
+\phi(\vec{r}_0) \text{ : Richtungsableitung}
+\end{align*}
+Der Gradient zeigt somit in die Richtung der stärksten Zunahme des
+Skalarfeldes.\\
+Die Gleichung $\phi(\vec{r}) = const$ bestimmt eine Fläche im $\R^3$, wobei der
+Gradient immer senkrecht auf dieser Fläche steht.\\
+
+\begin{Definition}[Ableitungsoperator]
+Der Name {\em Ableitungsoperator} kommt von der Eigenschaft, dass jedem
+Skalarfeld ein Vektorfeld zugeordnet ist. Daher schreibt man auch oft
+\begin{align*}
+\nabla = \partial_x \vec{e}_x + \partial_y \vec{e}_y + \partial_z \vec{e}_z, 
+\text{ : Nabla}
+\end{align*}
+wobei für jedes Skalarfeld gilt
+\begin{align*}
+\nabla \phi(\vec{r}) = (\partial_x \vec{e}_x + \partial_y \vec{e}_y +
+\partial_z \vec{e}_z)\phi(\vec{r}) = \partial_x \phi \vec{e}_x + \partial_y \phi
+\vec{e}_y + \partial_z \phi \vec{e}_z
+\end{align*}
+\end{Definition}
+
+
+\begin{Beispiel}
+  \begin{align*}
+  &\phi(x,y,z) = xyz\qquad \nabla\phi =
+  \begin{pmatrix}yz\\xz\\yx\end{pmatrix}\\
+   &\phi(x,y,z) = MmG \frac{1}{\sqrt{x^2+y^2+z^2}} \text{ :
+ Gravitationspotential}\\
+ \Rightarrow & F_g = -\nabla \phi = MmG
+ \frac{1}{\sqrt{x^2+y^2+z^2}^{\frac{3}{2}}}\begin{pmatrix}x\\y\\z\end{pmatrix}
+ \text{ : Gravitationskraft}
+ \end{align*}
+
+\end{Beispiel}
+
+\begin{Definition}[Divergenz]
+Betrachte ein Vektorfeld $\vec{A}(\vec{r})$, das jedem Punkt $\vec{r}$ einen
+Vektor zuordnet.\\
+Die {\em Divergenz} von $\vec{A} =
+\begin{pmatrix}A_x\\A_y\\A_z\end{pmatrix}$ ist definiert als
+\begin{align*}
+\div \vec{A} \equiv \nabla \cdot \vec{A} = \frac{\partial A_x}{\partial x} +
+\frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}.
+\end{align*}
+\end{Definition}
+Die Divergenz eines Vektorfeldes beschreibt physikalisch Quellterme.
+
+\begin{itemize}
+  \item Die Divergenz eines $\vec{E}$-Feldes verschwindet, wenn keine Ladungen
+  vorhanden sind: $\div \vec{E} = 0$.
+  \item Für das Geschwindigkeitsfeld $\vec{v}(\vec{r})$ und die Massendichte
+  $\rho(\vec{r})$ einer fließenden Flüssigkeit gilt $\div \left[
+  \rho(\vec{r})\vec{v}(\vec{r}) \right] = 0$, wenn keine Quelle/Abfluss
+  vorhanden ist.
+\end{itemize}
+
+\begin{Beispiel}
+\begin{align*}
+&\vec{A}(x,y,z) = \begin{pmatrix}x\\y\\z\end{pmatrix} \Rightarrow \div \vec{A}
+= 3\\
+&\vec{A}(x,y,z) = \begin{pmatrix}y\\z\\x\end{pmatrix} \Rightarrow \div \vec{A}
+= 0\\
+\end{align*}
+\end{Beispiel}
+
+\begin{Definition}[Laplace Operator]
+Die Kombination von Gradient und Divergenz ergibt den {\em Laplace Operator}
+für ein Skalarfeld $\phi(\vec{r})$.
+\begin{align*}
+\Delta \phi(\vec{r}) = \div \nabla \phi(\vec{r}) = \partial^2_x\phi +
+\partial^2_y\phi + \partial^2_z\phi
+\end{align*}
+\end{Definition}
+
+\begin{Beispiel}
+Gravitationspotential $\phi(\vec{r}) = MmG \frac{1}{\sqrt{x^2+y^2+z^2}}$
+\begin{align*}
+\Rightarrow \Delta \phi(\vec{r}) = 0 \text{ für } \vec{r} \neq 0
+\end{align*}
+Da aber bei $\vec{r} = 0$ eine Quelle/Masse sitzt, die ein Gravitationsfeld
+erzeugt, sollte also $\div \nabla \phi(\vec{r})$ bei $\vec{r} = 0$ nicht
+verschwinden. In der Tat gilt:
+\begin{align*}
+\Delta \phi(\vec{r}) = 4\pi MmG
+\underbrace{\delta(x)\delta(y)\delta(z)}_{\delta(\vec{r})},
+\end{align*}
+mit der bekannten $\delta$-Funktion.
+\end{Beispiel}
+
+\begin{Definition}[Rotation]
+Die {\em Rotation} ist definiert für ein Vektorfeld $\vec{A}(\vec{r})$ mittels
+\begin{align*}
+\rot \vec{A}(\vec{r}) &= \nabla \times \vec{A}(\vec{r}) \\
+&=
+\vec{e}_x\left(\partial_y A_z - \partial_z A_y\right) +
+\vec{e}_y\left(\partial_z A_x - \partial_x A_z\right) +
+\vec{e}_z\left(\partial_x A_y - \partial_y A_x\right) \\
+&=
+\begin{pmatrix}\partial_y A_z - \partial_z A_y \\ \partial_z A_x -
+\partial_x A_z \\ \partial_x A_y - \partial_y A_x\end{pmatrix}
+\end{align*}
+und ist somit wieder ein Vektorfeld.
+\end{Definition}
+
+Die physikalische Interpretation ist, dass die Rotation Wirbel/Drehungen
+beschreibt:
+\par
+Betrachte das Kraftfeld $\vec{F}(x,y,z) =
+\begin{pmatrix}0\\x\\0\end{pmatrix}$.\\ 
+Ein Objekt das wir in einem solchen Feld platzieren, beginnt sich um seine
+eigenen Achse zu drehen.
+\begin{align*}
+\rot \vec{F} = \begin{pmatrix}0\\0\\ \partial_x F_y\end{pmatrix} =  
+\begin{pmatrix}0\\0\\1\end{pmatrix} \text{ : Drehachse des Objekts}
+\end{align*}
+
+
+
+\begin{Beispiel}
+{\bf Maxwell Gleichung Elektrodynamik}
+ \begin{align*}
+  &\vec{E} : \text{ elektrisches Feld}, && \vec{B} : \text{ magnetisches Feld}\\
+  &\rho : \text{ Ladungsdichte}, &&j : \text{ Ladungsstrom}\\
+  &\div \vec{E} = 4\pi\rho(\vec{r}) && \rot \vec{E} + \frac{1}{L}\partial_t
+  \vec{B} = 0\\
+   &\div \vec{B} = 4\pi\rho(\vec{r}) && \rot \vec{B} + \frac{1}{L}\partial_t
+   \vec{E} = j(\vec{r}
+ \end{align*}
+{\bf Quantenmechanik des Wasserstoffatoms}
+\begin{align*}
+ i\hbar\partial_t \psi(\vec{r},t) = \frac{\hbar^2}{2m}\Delta\psi(\vec{r},t) + \frac{l^2}{|\vec{r}|}\psi(\vec{r},t)
+\end{align*}
+{\bf Navier-Stokes}
+\begin{align*}
+ \rho\left(\frac{d\vec{v}}{dt} +\vec{v}\cdot\nabla\cdot\vec{v}\right) = -\nabla p + \mu \Delta\vec{v}
+\end{align*}
+\end{Beispiel}
+
+\begin{Bemerkung}
+Für ein Skalarfeld $\phi(\vec{r})$ gilt
+\begin{align*}
+\rot \nabla \phi(\vec{r}) = 0
+\end{align*}
+\begin{info}
+\begin{align*}
+\rot \begin{pmatrix}\partial_x \phi \\ \partial_y \phi \\
+\partial_z \phi\end{pmatrix} = \begin{pmatrix}\partial_y\partial_z \phi -
+\partial_z\partial_y \phi \\ \partial_z\partial_x \phi - \partial_x\partial_z
+\phi \\ \partial_x\partial_y \phi - \partial_y\partial_x \phi\end{pmatrix} = \begin{pmatrix}0\\0\\0\end{pmatrix}
+\end{align*}
+\end{info}
+\par
+Für ein Vektorfeld $\vec{A}(\vec{r})$ gilt
+\begin{align*}
+\div \rot \vec{A}(\vec{r}) = 0
+\end{align*}
+\end{Bemerkung}
+
+Zudem sind folgende Relationen einfach zu beweisen
+\begin{align*}
+&\nabla\cdot(\phi\vec{A}) = (\nabla\phi)\cdot\vec{A} + \nabla\cdot\vec{A}\\
+&\nabla\times(\phi\vec{A}) = (\nabla\phi)\times\vec{A} +
+\phi(\nabla\times\vec{A})\\
+&\nabla\cdot(\vec{A}\times\vec{B}) = \vec{B}\cdot(\nabla\times\vec{A}) -
+\vec{A}\cdot(\nabla\times\vec{B})\\
+&\nabla\times(\vec{A}\times\vec{B}) = \vec{A}(\nabla\cdot\vec{B}) -
+\vec{B}(\nabla\cdot\vec{A}) + (\vec{B}\cdot\nabla)\vec{A} -
+(\vec{A}\cdot\nabla)\vec{B}\\
+&\nabla\times(\nabla\times\vec{A}) = \nabla(\nabla\cdot\vec{A}) - \Delta\vec{A}
+\end{align*}
+
+\subsection{Gauß'scher Integralsatz}
+Die Integralsätze stellen einen Zusammenhang her zwischen den
+Ableitungsoperatoren und den Oberflächenintegralen. Der Gauß'sche Integralsatz
+besagt
+\begin{align*}
+\int \limits_{V} \dvecr \div \vec{A}(\vec{r}) = \int \limits_{S=\partial V} \dvecs \cdot
+\vec{A}(\vec{r}) = \int \limits_{S = \partial V} \ds
+\vec{n}\cdot\vec{A}(\vec{r}),
+\end{align*}
+wobei $\partial V$ die Oberfläche des Volumens $V$ beschreibt und $\vec{n}$
+senkrecht auf der Oberfläche steht und nach außen zeigt.
+\par
+\begin{info}
+Für einen Quader mit dem Volumen $V$ gilt
+\begin{align*}
+&\int \limits_{V} \dV \div \vec{A} \\
+=&\int
+\limits_{0}^{a}\dx\int\limits_{0}^{b}\dy\int\limits_{0}^{c}\dz
+\left[\partial_xA_x + \partial_yA_y + \partial_zA_z\right]\\
+=&\int\limits_{0}^{b}\dy\int\limits_{0}^{c}\dz A_x(a,y,z) -
+\int\limits_{0}^{b}\dy\int\limits_{0}^{c}\dz A_x(0,y,z) \\&+
+\int\limits_{0}^{a}\dx\int\limits_{0}^{c}\dz A_y(x,b,z) -
+\int\limits_{0}^{a}\dx\int\limits_{0}^{c}\dz A_y(x,0,z) \\&+
+\int\limits_{0}^{a}\dx\int\limits_{0}^{b}\dy A_z(x,y,c) - 
+\int\limits_{0}^{a}\dx\int\limits_{0}^{b}\dy A_z(x,y,0) \\=& \int
+\limits_{\partial V = S} \dvecs \cdot\vec{A}
+\end{align*}
+Für ein allgemeines Volumen folgt der Satz durch Zerlegen des Volumens in
+kleine Quader und mittels einem Grenzwert.
+\end{info}
+
+\begin{Bemerkung}
+Falls das umschlossene Gebiet Löcher aufweist, so müssen diese Löcher bei der
+Bestimmung des Randes berücksichtigt werden.
+\end{Bemerkung}
+
+\begin{Beispiel}
+Betrachte das Vektorfeld
+\begin{align*}
+\vec{A} = \vec{r} = \begin{pmatrix}x\\y\\z\end{pmatrix},\quad \Rightarrow \div
+\vec{A} = 3
+\end{align*}
+mit dem Volumen $V$ einer Kugel mit Radius $R$.
+\begin{align*}
+\Rightarrow & \int \limits_{V} \dvecr  \div \vec{A} = 3\frac{4\pi}{3} R^3
+= 4\pi R^3\\
+& \int \limits_{S = \partial V} \ds \vec{n}\cdot\vec{r} = \int \limits_{0}^{2\pi}\dphi \int
+\limits_{0}^{\pi}\dtheta \sin(\theta) \cdot R^3 = 4\pi R^3
+\end{align*}
+{\em Kontinuitätsgleichung} Die Änderung der Teilchenzahl von einer Flüssigkeit
+im Volumen $V$ hat die Form
+\begin{align*}
+\partial_t N_v(t) = \partial_t \int \limits_{V} \dvecr \varphi(\vec{r})t
+= \int \limits_{V} \dvecr \partial_t \varphi(\vec{r}, t), \qquad
+\varphi(\vec{r}, t) \text{ : Teilchendichte}
+\end{align*}
+Teilchenfluss aus dem Volumen: $\int \limits_{\partial V = S}\dvecr \cdot
+\underbrace{\varphi(\vec{r},t)\vec{v}(\vec{r},t)}_{j(\vec{r},t) : \text{
+Teilchenstrom}}$
+\begin{align*}
+\Rightarrow \partial_t N_v(t) &= \int \limits_{V} \dvecr
+\partial_t\varphi(\vec{r},t) = -\int \limits_{\partial V = S}\dvecs
+\vec{j}(\vec{r},t) \\
+&= -\int \limits_{V}\dvecr \div j(\vec{r},t) : \text{
+gilt für alle Volumen } V
+\end{align*}
+\begin{align*}
+\Rightarrow \partial_t \varphi(\vec{r},t) + \div j(\vec{r},t) = 0
+\end{align*}
+\end{Beispiel}
+
+\subsection{Integralsatz von Stokes}
+Der {\em Satz von Stokes} verbindet Oberflächenintegrale mit Linienintegralen
+entlang der Begrenzungslinie der Oberfläche. Für ein Vektorfeld
+$\vec{A}(\vec{r})$ gilt
+\begin{align*}
+\int \limits_{S}\dvecs \cdot\left(\rot \vec{A}(\vec{r})\right) = \int
+\limits_{C = \partial S} \dvecr \cdot \vec{A}(\vec{r}).
+\end{align*}
+Dabei bildet der Normalenvektor $\vec{n}$ auf der Oberfläche mit der
+Umlaufrichtung der Linie $C$ eine rechtshändige Schraube.
+
+\begin{Bemerkung}
+Die Fläche soll orientierbar sein, der Satz ist nicht anwendbar auf ein
+Möbiusband.
+\end{Bemerkung}
+\par
+Für ein Vektorfeld mit $\rot \vec{A} = 0$ gilt somit, dass alle geschlossenen
+Linienintegrale verschwinden.
+\begin{align*}
+\int \limits_{C} \dvecr \vec{A}(\vec{r}) = 0
+\end{align*}
+$\Rightarrow$ man kann jedoch nun zeigen, dass somit ein Skalarfeld $\phi$
+existiert mit
+\begin{align*}
+\vec{A}(\vec{r}) = \nabla\phi(\vec{r}).
+\end{align*}
+
+
+\subsection{Anwendung: Coulomb Potential}
+Eine homogen gefüllte Kugel mit Masse $M$ erzeugt ein Gravitationspotential
+\begin{align*}
+\phi(\vec{r}) = \frac{\alpha}{|r|} \qquad & : \alpha = MmG\\
+& : |r| > R \text{ Radius der Kugel}\\
+& : M = \frac{4\pi}{3}R^3\rho 
+\end{align*}
+Mittels dem Gradienten erzeugt dies das Gravitationsfeld
+\begin{align*}
+\vec{F}(\vec{r}) = -\nabla\phi(\vec{r}) = -\alpha \frac{\vec{r}}{|r|^3}.
+\end{align*}
+Weiter gilt, dass $\div \vec{F}(\vec{r}) = 0$ für $\vec{r}\neq0$. Es bleibt
+somit die Frage, was bei $\vec{r} = 0$ passiert. Allerdings macht das
+Resultat keinen Sinn für $|r| < R$, da sich innerhalb der Kugel das Potential
+verändert. Der Satz von Gauß besagt wiederum für $S$ eine Kugel mit Radius $> R$
+\begin{align*}
+\int \limits_{S}\dvecs \cdot\vec{F}(\vec{r}) &= \int
+\limits_{0}^{2\pi}\dphi \int \limits_{0}^{\pi}\dtheta \sin(\vartheta) \alpha \cdot
+\frac{\vec{r}}{|r|}\cdot\frac{\vec{r}}{|r|^3}\cdot|r|^2 \\
+&= \int
+\limits_{0}^{2\pi}\dphi \int\limits_{0}^{\pi}\dtheta \sin(\vartheta) \alpha =
+4\pi\alpha : \text{ unabhängig von } L\\
+&\overset{\text{Satz von Gauß}}{=} \int \limits_{V}\dvecr
+\div\vec{F}(\vec{r}),
+\end{align*}
+also muss die $\div \vec{F}$ innerhalb des
+massiven Körpers gerade so sein, dass sich die Konstante $4\pi\alpha$ ergibt.
+\par
+Der Körper hat eine homogene Massendichte und daher lässt sich das Potential
+schreiben
+\begin{align*}
+\phi(\vec{r}) = \int \limits_{V}\dvecr \frac{3\alpha}{4\pi
+R^3}\frac{1}{|r-r'|}
+\end{align*}
+Für $|r| > R$ ergibt dies $\phi(\vec{r}) = \frac{\alpha}{|r|}$, aber innerhalb
+des Körpers wird das Potential zu
+\begin{align*}
+\phi(\vec{r}) =
+\begin{cases}\frac{3}{2}\frac{\alpha}{R}-\frac{\alpha}{2}\frac{|r|^2}{R^3} &
+|r| < R
+\\
+\frac{\alpha}{|r|} & |r| > R\end{cases}
+\end{align*}
+und das Gravitationsfeld wird zu
+\begin{align*}
+\vec{F}(\vec{r}) = -\nabla\phi(\vec{r}) = 
+\begin{cases}\alpha\frac{\vec{r}}{|R^3|} & |r| < R \\
+\alpha\frac{\vec{r}}{|r|^3} & |r| > R\end{cases}
+\end{align*}
+und die Divergenz
+\begin{align*}
+\div \vec{F}(\vec{r}) = \begin{cases}\frac{3\alpha}{R^3} & |r| < R \\
+0 & |r| > R\end{cases}
+\end{align*}
+Der Satz von Gauß ist somit erfüllt für den realen Fall einer homogenen Kugel.
+\par
+Um jetzt das Verhalten einer reinen Punktladung zu untersuchen, lassen wir den
+Radius der Kugel gegen Null gehen, behalten die Masse aber konstant.
+\par
+Im Limes $R\to0$ konvergiert $\div \vec{F}(\vec{r})$ aber gegen eine
+$3$-dimensionale $\delta$-Funktion
+\begin{align*}
+\div \vec{F}(\vec{r}) \underset{R\to0}{\rightarrow} 4\pi\delta{\vec{r}}
+\end{align*}
+\begin{info}
+$\int \dvecr \div\vec{F}(\vec{r}) = 4\pi$ unabhängig von R und für $R\to0$
+ist alles Gewicht in einer kleinen Kugel um den Ursprung konzentriert.
+\end{info}
+\par
+Somit gilt für das Potential einer punktförmigen Masse
+\begin{align*}
+&\phi(\vec{r}) = \frac{\alpha}{|\vec{r}|}\qquad \vec{F}(\vec{r}) =
+\alpha\frac{\vec{r}}{|r|^3}\\
+&\Delta\phi(\vec{r}) = -4\pi\alpha\delta(\vec{r}) 
+\end{align*}
+\begin{Bemerkung}
+In der Elektrostatik hat das Potential eines geladenen Punktteilchens
+(Elektron/Proton) ebenfalls das Potential
+$\phi(\vec{r})\sim\frac{1}{|\vec{r}|}$. Daher der Name {\em Coulomb Potential}.
+\end{Bemerkung}

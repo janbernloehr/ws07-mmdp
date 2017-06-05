@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt,halfparskip,fleqn]{scrreprt}
+
+% Sonderzeichen
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+
+% Schriftart Minion Pro (auskommentieren, falls diese fehlt)
+%\usepackage[fullfamily,minionint,mathlf]{MinionPro}
+
+% Mathematik Pakete
+\usepackage{amsmath,array,stmaryrd}
+
+% Header, Footer, Farben
+\usepackage{fancyhdr,color}
+
+% pstricks zum Zeichnen
+\usepackage{pstricks-add,pst-pdf}
+
+% ntheorem für Theoremumgebungen
+\usepackage[amsmath,thmmarks]{ntheorem}
+
+% Seitenlayout
+\pagestyle{fancy} %eigener Seitenstil
+
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{\sf \textbf{\rightmark}} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{\sf \textbf{}} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\fancyfoot[L]{{\color{lightgray}\thepage \big|}} %Seitennummer
+
+% Verwendete Operatoren
+\DeclareMathOperator\sgn{sgn}
+\DeclareMathOperator\arcsinh{arcsinh}
+\renewcommand{\div}{\operatorname{div}}
+\DeclareMathOperator\rot{rot}
+
+% Verwendete Farben
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+\definecolor{lightgray}{rgb}{0.7,0.7,0.7}
+
+% Diese Farben zeigt einen Rand um jedes Bild an
+% (zur Größenmessung)
+%\definecolor{framecolor}{rgb}{0,0,0}
+\definecolor{framecolor}{rgb}{1,1,1}
+
+% Theoremumgebungen für Satz, Definition, Beispiel, Bemerkung usw.
+\newenvironment{satz}[2]{{\bf\color{darkblue} Satz
+#1} {\em #2}\par}{{\color{darkblue}\ensuremath{\rtimes}}}
+\theoremstyle{plain}
+\newtheorem{Satz}{Satz}[section] 
+
+\theoremstyle{marginbreak}
+\theorembodyfont{\upshape}
+\theoremheaderfont{\normalfont\bfseries}
+\theoremsymbol{\ensuremath{{\color{lightgray}\rtimes}}}
+\newtheorem{Definition}[Satz]{Definition}
+
+\theoremstyle{marginbreak}
+\theoremseparator{\hfill}
+\theoremsymbol{\ensuremath{{\color{lightgray}\triangleleft}}}
+\newtheorem{Beispiel}[Satz]{Beispiel}
+
+\theoremstyle{margin}
+\theoremsymbol{\ensuremath{{\color{lightgray}\multimap}}}
+\newtheorem{Bemerkung}[Satz]{Bemerkung}
+
+\newenvironment{info}{\ensuremath{{\color{lightgray}\looparrowright}}}{\ensuremath{{\color{lightgray}\looparrowleft}}}
+
+\renewcommand\thesubsubsection{\ensuremath{\triangleleft}}
+
+% Kapitelnummer bei Formeln voranstellen
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\numberwithin{equation}{section}
+
+% und quantoren sollen bitte nicht so gequetscht aussehen
+\let\existsorig\exists 
+\renewcommand{\exists}{\ \existsorig\ } 
+\let\forallorig\forall 
+\renewcommand{\forall}{\ \forallorig\ } 
+
+% Komplexe Zahlen, Natürliche Zahlen etc. alle wollen sie ihre eigenen Symbole
+% haben
+\newcommand{\Co}{\mathbb{C}}  
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+% auch die Integrale wollen Raum
+\newcommand{\dx}{\,dx\,}
+\newcommand{\dy}{\,dy\,}
+\newcommand{\dz}{\,dz\,}
+
+\newcommand{\du}{\,du\,}
+\newcommand{\dv}{\,dv\,}
+\newcommand{\dw}{\,dw\,}
+
+\newcommand{\dt}{\,dt\,}
+\newcommand{\ds}{\,ds\,}
+
+\newcommand{\dV}{\,dV\,}
+
+\newcommand{\dvecv}{\,d\vec{v}\,}
+\newcommand{\dvecs}{\,d\vec{s}\,}
+\newcommand{\dvecr}{\,d\vec{r}\,}
+
+\newcommand{\dr}{\,dr\,}
+\newcommand{\dphi}{\,d\varphi\,}
+\newcommand{\dtheta}{\,d\vartheta\,}
+
+\begin{document}
+
+\markright{\sf \textbf{Mathematische Methoden der
+Physik}\hfill\textbf{\thesection}}
+
+\renewcommand\thesection{\arabic{section}}
+
+\title{Mathematische Methoden der Physik}
+\author{Jan-Cornelius Molnar}
+\date{Revision: \today}
+
+% den Titel einfügen
+\maketitle
+
+% und los gehts!
+
+\tableofcontents % erzeugt ein Inhaltsverzeichnis
+
+\newpage
+\input{Kapitel1.tex}
+\newpage
+\input{Kapitel2.tex}
+\newpage
+\input{Kapitel3.tex}
+\newpage
+\input{Kapitel4.tex}
+\newpage
+\input{Kapitel5.tex}
+\newpage
+\input{Kapitel6.tex}
+\newpage
+\input{Kapitel7.tex}
+\newpage
+\input{Kapitel8.tex}
+\newpage
+\input{Kapitel9.tex}
+\end{document}

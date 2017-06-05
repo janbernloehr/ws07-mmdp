@@ -1,0 +1,227 @@
+\section{Vektoren}
+
+\begin{Definition}[Skalar]
+ Physikalische Größen, die nur von ihrem Betrag abhängen
+\begin{itemize}
+ \item T: Temperatur
+\item p: Druck
+\item m: Masse
+\item $\alpha = \frac{e^2}{\hbar c} \approx \frac{1}{137}$ : Feinstrukturkonstante
+\end{itemize}
+\end{Definition}
+
+\begin{Definition}[Vektor]
+ Physikalische Größen, die durch ihren Betrag und ihre Richtung bestimmt sind
+\begin{itemize}
+ \item $\vec v$: Geschwindigkeit
+\item $\vec F$: Kraft
+\item $\vec E$: elektrisches Feld
+\end{itemize}
+\end{Definition}
+
+Einen Vektor stellen wir durch einen Pfeil im Raum dar mit seiner Länge bestimmt durch seinen Betrag.
+\par{\bf Addition}
+\begin{align*}
+ \vec a + \vec b = \vec b + \vec a & : \text{ kommutativ}\\
+ \vec a + (\vec b + \vec c) = (\vec a + \vec b) + \vec c & : \text{ assoziativ}
+\end{align*} 
+\par{\bf Skalare Multiplikation} $\lambda \cdot \vec a$:
+\begin{align*}
+ (\lambda + \mu) \vec a = \lambda \vec a + \mu \vec a\\
+\lambda (\vec a + \vec b) = \lambda \vec a + \lambda \vec b
+\end{align*} 
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-1)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-5,1)(-1,2)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-5,1)(0,5)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](-1,2)(0,5)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-5,1)(-4,4)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](-4,4)(0,5)
+ 
+ \rput(-5,2.5){$\vec{a}$}
+ \rput(-3,1){$\vec{b}$}
+ \rput(-2,5){$\vec{a}$}
+ \rput(0,4){$\vec{b}$}
+ \rput(-2.8,3.5){$\vec{a}+\vec{b}$}
+ 
+ \rput(-3,0){Addition}
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(1,1)(3,3)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed]{->}(3,3)(5,5)
+ 
+ \rput(1.5,2.5){$\vec{a}$}
+ \rput(3.5,4.5){$2\vec{a}$}
+ 
+ \rput(3,0){Skalare Multiplikation}
+ 
+\end{pspicture}
+\end{center}
+\subsection{Basisvektoren}
+Für 3 beliebige Vektoren, die nicht in einer Ebene liegen, können wir jeden Vektor darstellen als
+\begin{align}
+ \vec a = a_1\vec e_1 + a_2 \vec e_2 + a_3 \vec e_3
+\end{align}
+
+Die drei Vektoren $\vec e_1, \vec e_2, \vec e_3$ formen eine Basis; die Skalare $a_1, a_2, a_3$ heißen Komponenten des Vektors $\vec a$ zu dieser Basis.
+
+\begin{Bemerkung}
+ Meistens werden die Basisvektoren orthogonal aufeinander gewählt aber es ist nicht notwendig.
+\end{Bemerkung}
+Im Allgemeinen gilt
+\begin{enumerate}
+ \item Die Anzahl Vektoren in der Basis ist bestimmt durch die Dimension des Raumes.
+\item Die Vektoren in der Basis sind linear unabhängig, d.h.,
+\begin{align*}
+ c_1\vec e_1 + c_2\vec e_2 + ... + c_n\vec e_n \neq 0
+\end{align*}
+für alle $c_i$, außer $c_i = 0$.
+\end{enumerate}
+Im 3-dimensionalen kartesischen Koordinatensystem $(x,y,z)$ haben wir die natürliche Basis der Einheitsvektoren $\vec e_x, \vec e_y, \vec e_z$ entlang der $x,y,z$ Achsen.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-4)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed]{->}(0,0)(0,5)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed]{->}(0,0)(5,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed]{->}(0,0)(-2.5,-2.5)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(0,2)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(2,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(-1,-1)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](0,0)(2,-2)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](-2,-2)(2,-2)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](2,-2)(4,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](2,-2)(2,2)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](0,4)(2,2)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(2,2)
+ 
+ \rput(-1.2,-0.7){$\vec e_x$} %-1,-1
+ \rput(-2.4,-1.9){$a_x$} % -2,-2
+ 
+ \rput(1.7,0.3){$\vec e_y$} %-1,-1
+ \rput(4,0.3){$a_y$} % -2,-2
+ 
+ \rput(-0.3,1.9){$\vec e_z$} %-1,-1
+ \rput(-0.3,4){$a_z$} % -2,-2
+ 
+ \rput(2.2,2.2){$\vec a$}
+ 
+ 
+ \rput(-2.7,-2.5){$x$}
+ \rput(5,0.3){$y$}
+ \rput(-0.3,5){$z$}
+  
+\end{pspicture}
+\end{center}
+
+Für eine gewählte Basis können wir somit jeden Vektor in seinen Komponenten schreiben
+\begin{align}
+ \vec a = \begin{pmatrix}a_x\\a_y\\a_z\end{pmatrix} \equiv \begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix}
+\end{align}
+Die Addition und skalare Multiplikation hat in Komponentenschreibweise die Form:
+\begin{itemize}
+ \item $\vec a + \vec b = \begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix} + \begin{pmatrix}b_1\\b_2\\b_3\end{pmatrix} = \begin{pmatrix}a_1+b_1\\a_2+b_2\\a_3+b_3\end{pmatrix}$
+\item $\lambda  \vec a = \lambda \begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix} = \begin{pmatrix}\lambda a_1\\ \lambda a_2\\ \lambda a_3\end{pmatrix}$
+\end{itemize}
+
+\subsection{Skalar Produkt und Betrag}
+\begin{Definition}[Skalarprodukt]
+Das {\em Skalarprodukt} im dreidimensionalen kartesischen Raum ist definiert durch
+\begin{align}
+ \vec a \cdot \vec b = a_x b_x + a_y b_y + a_z b_z \equiv\,<\vec a|\vec b>.
+\end{align}
+\end{Definition}
+\begin{Definition}[Betrag]
+Der {\em Betrag} eines Vektors ist bestimmt durch das Skalarprodukt mit sich selbst.
+\begin{align}
+ a = |\vec a| = \sqrt{\vec a \cdot \vec a} = \sqrt{a_x^2 + a_y^2 + a_z^2}
+\end{align}
+\end{Definition}
+
+Für die natürliche Basis $\vec e_x, \vec e_y, \vec e_z$ folgt somit
+\begin{align*}
+ \vec e_x \cdot \vec e_y = \vec e_x \cdot \vec e_z = \vec e_y \cdot \vec e_z =
+ 0 & \text{\qquad orthogonal}\\ |\vec e_x| = |\vec e_y| = |\vec e_z| = 1 &
+ \text{\qquad normiert}
+\end{align*}
+
+\begin{Bemerkung}
+Die Basis heißt orthonormiert.
+\end{Bemerkung}
+
+Das Skalarprodukt kann auch geschrieben werden als
+\begin{align*}
+ \vec a \cdot \vec b = |\vec a||\vec b|\cos{\vartheta}
+\end{align*}
+mit dem Winkel $\vartheta$ zwischen den beiden Vekoren $\vec a$ und $\vec b$.
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(5,-.5)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(3,4)
+ 
+ \psarc[linewidth=.5pt](A){1}{-5}{52}
+ 
+ \rput(3.5,0){$\vec b$}
+ \rput(2,3.5){$\vec a$}  
+ \rput(0.5,0.2){$\vartheta$}
+\end{pspicture}
+\end{center}
+
+\subsection{Vektorprodukt}
+Das Vektorprodukt wird geschrieben als
+\begin{align*}
+ \vec c = \vec a \times \vec b
+\end{align*}
+wobei $\vec c$ orthogonal auf $\vec a$ und $\vec b$ steht, mit dem Betrag
+\begin{align*}
+ |\vec c| = |\vec a||\vec b|\sin{\vartheta}, \text{\qquad der Fläche des
+ Parallelogramms.}
+\end{align*}
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-2)(3,3)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(2,-1)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(2,1)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(0,2)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](2,1)(4,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](2,-1)(4,0)
+ 
+ \psarc[linewidth=.5pt](A){0.9}{-26}{26}
+ 
+ \rput(1.2,-1){$\vec b$}
+ \rput(1.2,1){$\vec a$}
+ \rput(-0.4,1.2){$\vec c$}  
+ \rput(0.6,0){$\vartheta$}
+\end{pspicture}
+\end{center}
+
+Zudem bilden $\vec a, \vec b, \vec c$ ein rechthändiges Dreibein.\\
+Es gelten die Rechenregeln
+\begin{align}
+          &(\vec a + \vec b) \times \vec c = \vec a \times \vec c + \vec b
+          \times \vec c, \nonumber\\ 
+          &\vec b \times \vec a = - \vec a \times \vec b.
+\end{align}
+
+In den Koordinaten der natürlichen Basis $\vec e_x, \vec e_y, \vec e_z$ hat das Vektorprodukt die Form
+\begin{align}
+ \vec a \times \vec b = \begin{pmatrix}a_x\\a_y\\a_z\end{pmatrix} \times
+ \begin{pmatrix}b_x\\b_y\\b_z\end{pmatrix} = \begin{pmatrix}a_y b_z - a_z b_y\\a_z b_x - a_x b_z\\ a_x b_y - a_y b_x\end{pmatrix} = \vec c.
+\end{align}
+
+\begin{Beispiel}
+Bewegung eines Massenpunktes: $\vec r(t) =
+\begin{pmatrix}x(t)\\y(t)\\z(t)\end{pmatrix}$\\ Geschwindigkeit: $\vec v(t) = \frac{d}{dt} \vec r(t) =
+\begin{pmatrix}\dot{x}(t)\\\dot{y}(t)\\\dot{z}(t)\end{pmatrix}$\\
+Drehimpuls: $\vec L = m(\vec r \times \vec v)$\\
+Lorentz-Kraft: $\vec F = q(\underbrace{\vec E}_{\text{el. Feld}} + \vec v
+\times \underbrace{\vec B}_{\text{Magnetfeld}})$\\
+Beschleunigung: $\vec a(t) = \frac{d}{dt} \vec v(t) = \frac{d^2}{dt^2}\vec r(t)
+= \begin{pmatrix}\ddot{x}(t)\\\ddot{y}(t)\\\ddot{z}(t)\end{pmatrix}$
+\end{Beispiel}

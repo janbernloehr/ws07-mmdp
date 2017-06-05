@@ -1,0 +1,411 @@
+\section{Komplexe Zahlen} %erzeugt einen Abschnitt mit Nummer
+
+Die Gleichung $z²=-1$ hat keine Lösung in den reellen Zahlen. Man kann jedoch
+die reellen Zahlen $\mathbb{R}$ erweitern, sodass diese Gleichung ebenfalls
+zwei Lösungen besitzt.\\
+Dazu führt man die {\em imaginäre Einheit} ein
+\begin{equation}
+	i \text{ mit der Definition } i^2=-1
+\end{equation}
+Die beiden Lösungen obiger Gleichung nehmen die Form an
+\begin{equation*}
+	z = \pm i
+\end{equation*}
+Eine Zahl in diesem erweiterten Raum kann somit einen Realteil und einen
+Imaginärteil besitzen und heißt komplexe Zahl.
+\begin{equation}
+	z = \underbrace{x}_{\text{Realteil}} + \underbrace{iy}_{\text{Imaginärteil}}
+	x,y
+	\in
+	\mathbb{R}
+\end{equation}
+Das Rechnen mit komplexen Zahlen verhält sich gleich wie mit reellen Zahlen:
+\begin{eqnarray}
+(x+iy)+(u+iv) & = & (x+u)+i(y+v)\\
+(x+iy)\cdot(u+iv) & = & xu-yv+i(xv+uy)\nonumber
+\end{eqnarray}
+
+Eine komplexe Zahl kann in der komplexen Ebene dargestellt werden.
+\begin{align}
+\operatorname{Re} z &= x = r \cos(\varphi)&& \text{ : Real-Teil}\\
+\operatorname{Im} z &= y = r \sin(\varphi)&& \text{ :
+Imaginär-Teil}\nonumber\\
+r &= \sqrt{x^2+y^2} \equiv |z|&& \text{ : Betrag von z}\nonumber\\
+\varphi &= \arctan \frac{y}{x} \equiv \arg(z)&& \text{ : Argument von
+z}\nonumber
+\end{align}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(10,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-1,0)(10,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](0,4)(6,4)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](6,0)(6,4)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(6,4)
+ 
+ \psarc[linewidth=.5pt](A){1}{0}{33}
+ 
+ \rput(-0.2,-0.3){$0$}
+ \rput(6,-0.3){$x$}
+ \rput(-0.2,4){$y$}
+ \rput(6.2,4.2){$z$}
+ 
+ \rput(3.2,2.4){$r$}
+ 
+ \rput(0.7,0.2){$\varphi$}
+ 
+ \rput(9.7,-0.26){$\Re z$}
+ \rput(-0.36,5.7){$\Im z$}
+ 
+\end{pspicture}
+\end{center}
+
+\begin{Bemerkung}
+\begin{align}
+z_1 \cdot z_2 &=
+r_1(\cos\varphi_1+i\sin\varphi_1)
+r_2(\cos\varphi_2+i\sin\varphi_2) \nonumber \\ &= r_1 r_2
+(\cos\varphi_1 \cos\varphi_2 - \sin\varphi_1 \sin\varphi_2 + i(\cos\varphi_1 \sin\varphi_2 + \sin\varphi_1
+\cos\varphi_2)) \nonumber \\ &= r_1 r_2 [\cos(\varphi_1 +
+\varphi_2) + i\sin(\varphi_1 + \varphi_2)]
+\end{align}
+d.h. Multiplikation zweier komplexer Zahlen multipliziert ihren Betrag und
+addiert ihr Argument.
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-1)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-6,0)(6,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ %\psplot[linewidth=1.2pt,algebraic=true]{-5}{0}{-x}
+ %\psplot[linewidth=1.2pt,algebraic=true]{0}{5}{x}
+ 
+ \psline[linewidth=1.2pt,arrowsize=4pt]{->}(0,0)(3,2)
+ \psline[linewidth=1.2pt,arrowsize=4pt]{->}(0,0)(-1,3)
+ \psline[linewidth=1.2pt,arrowsize=4pt]{->}(0,0)(-5,3.89)
+
+\psarc[linewidth=.5pt](A){3}{0}{33.7}
+\psarc[linewidth=.5pt](A){2}{0}{108.4}
+\psarc[linewidth=.5pt](A){5}{0}{142.1}
+ \rput(-1.1,2.5){$r_2$}
+ \rput(2.5,2){$r_1$}
+ \rput(3.2,2.13){$z_1$}
+ \rput(-1.1,3.3){$z_2$}
+ \rput(-5.1,4.1){$z_1\cdot z_2$}
+ \rput(0.3,2.2){$\varphi_2$}
+ \rput(3.2,0.2){$\varphi_1$}
+ \rput(-3,3){$\varphi_1+\varphi_2$}
+ \rput(-5,3.3){$r_1+r_2$}
+ \rput(5.7,-0.26){$\Re z$}
+ \rput(-0.36,5.7){$\Im z$}
+ \end{pspicture}
+\end{center}
+\end{Bemerkung}
+
+\subsection{Komplex Konjugierte}
+\begin{Definition}[Komplexe Konjugation]
+Es gibt eine spezielle Funktion, das {\em Komplex Konjugierte}, das jeder
+komplexen Zahl eine neue komplexe Zahl zuordnet mittels
+\begin{align*}
+z = x+iy \Rightarrow \bar{z} = x-iy.
+\end{align*}
+\end{Definition}
+
+Es gelten die Relationen
+\begin{align}
+z+\bar{z} &= 2\operatorname{Re}z\\
+z-\bar{z} &= 2\operatorname{Im}z \nonumber\\
+z\cdot\bar{z} &= |z|^2 \nonumber
+\end{align}
+Es gelten die Rechenregeln
+\begin{align}
+(\overline{z_1 + z_2}) &= \overline{z_1}+\overline{z_2} \\
+(\overline{z_1 \cdot z_2}) &= \overline{z_1} \cdot \overline{z_2} \nonumber\\
+(\overline{z_1 + iz_2}) &= \overline{z_1}-i\overline{z_2} \nonumber
+\end{align}
+\begin{Bemerkung}
+Die Division von komplexen Zahlen erfolgt am einfachsten mit folgendem Trick
+\begin{align*}
+\frac{z_1}{z_2} = \frac{x + iy}{u + iv} = \frac{z_1 \cdot \bar{z_2}}{|z_2|^2} =
+\frac {(x + iy)(u + iv)}{u^2 + v^2} = \frac{xu + yv + i(xv+yu)}{u^2+v^2}
+\end{align*}
+\end{Bemerkung}
+
+\subsection{Funktionen komplexer Variablen}
+
+\begin{Beispiel}
+\begin{align*}
+f(z) = z^2 = (x + iy)^2  = x^2 - y^2 + 2ixy
+\end{align*}
+\end{Beispiel}
+Die Ableitung von komplexen Funktionen folgt analog zur Ableitung reeller
+Funktionen
+\begin{equation}
+\frac{d}{dz}f(z)=\lim \limits_{\delta z \to 0} \frac{f(z+\Delta z) -
+f(z)}{\Delta z}
+\end{equation}
+\begin{Bemerkung}
+Falls eine komplexe Funktion differenzierbar in einer kleinen Umgebung ist, so
+heißt sie {\em analytisch}.
+\end{Bemerkung}
+\begin{Beispiel}
+\begin{align*}
+&\frac{d}{dz} z^n = n \cdot z^{n-1}\\
+&\operatorname{Re}z,\operatorname{Im}z,\bar{z}, |z|^2 \text{ sind nicht
+differenzierbar}
+\end{align*}
+\end{Beispiel}
+
+\subsection{Exponentialfunktion}
+\begin{Definition}[Exponentialfunktion]
+Die exponential Funktion $\exp(z)$ ist definiert mittels der Potenzreihe
+\begin{equation}
+\exp(z) = \sum \limits_{n = 0}^\infty {1 + z +
+\frac{z^2}{2} + \frac{z^3}{3!} + \frac{z^4}{4!} + \ldots}
+\end{equation}
+\end{Definition}
+
+\begin{Bemerkung}
+Die Potenzreihe konvergiert für alle $z \in \mathbb{C}$
+\begin{align*}
+\exp(1) &\equiv e && \text{ Eulersche Zahl}\\
+\exp(x) &\equiv e^x && \text{ für } x \in \mathbb{R}\\
+\Rightarrow \exp(z) &\equiv e^z && \text{ Erweiterung von } e^z \text{ auf
+komplexe Zahlen}
+\end{align*}
+\end{Bemerkung}
+
+Die Exponentailfunktion hat folgende Eigenschaften
+\begin{align*}
+\frac{d}{dz} \exp(z) = \exp(z)
+\end{align*}
+\begin{info}
+\begin{align*}
+\frac{d}{dz} \exp(z) &= \frac{d}{dz} \left(\sum \limits_{n = 0}^{\infty}
+\frac{1}{n!}z^n \right) 
+= \sum \limits_{n=0}^{\infty} \frac{1}{n!} \frac{d}{dz} z^n
+= \sum \limits_{n=1}^{\infty} \frac{1}{(n-1)!} z^{n-1} \\
+& = \sum \limits_{n=0}^{\infty} \frac{1}{n!} z^{n} = \exp(z)
+\end{align*}
+\end{info}
+
+\begin{align*}
+\exp(z_1) \cdot \exp(z_2) = \exp(z_1 + z_2)
+\end{align*}
+\begin{info}
+\begin{align*}
+\begin{split}
+\exp(z_1) \cdot \exp(z_2) &= \left( \sum \limits_{n=0}^\infty \frac{1}{n!}
+z_1^n \right) \left( \sum \limits_{m=0}^\infty \frac{1}{m!}z_2^m \right) 
+= \sum \limits_{n=0 \atop m=0}^\infty \frac{1}{n!m!} z_1^n \cdot z_2^m \\
+&= \sum \limits_{l=0}^\infty \frac{1}{l!} (z_1+z_2)^l = \exp(z_1 + z_2)
+\end{split}
+\end{align*}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(10,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-1,0)(10,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ 
+\psdots(1,1)(2,1)(3,1)(4,1)(5,1)(6,1)(7,1)(8,1)(9,1)
+\psdots(1,2)(2,2)(3,2)(4,2)(5,2)(6,2)(7,2)(8,2)(9,2)
+\psdots(1,3)(2,3)(3,3)(4,3)(5,3)(6,3)(7,3)(8,3)(9,3)
+\psdots(1,4)(2,4)(3,4)(4,4)(5,4)(6,4)(7,4)(8,4)(9,4)
+\psdots(1,5)(2,5)(3,5)(4,5)(5,5)(6,5)(7,5)(8,5)(9,5)
+ 
+ \rput(9.7,-0.26){$n$}
+ \rput(-0.36,5.7){$m$}
+ \rput{-45}(0,1.62){\psframe[framearc=0.5](0,0)(2.3,0.5)}
+ \rput(0.5,0.5){$k$}
+\end{pspicture}
+\end{center}
+\end{info}
+
+Von besonderem Interesse ist der Wert von $e^z$ für ein imaginäres $z =
+i\varphi$:
+\begin{align*}
+& e^{i\varphi} \cdot \overline{e^{i\varphi}} = |e^{i\varphi}|^2 = e^0 =
+e^{i\varphi} e^{-i\varphi} = 1 \\
+\Rightarrow\; & e^{i\varphi} \text{ liegt auf dem
+Einheitskreis}
+\end{align*}
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-1)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-6,0)(6,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ %\psplot[linewidth=1.2pt,algebraic=true]{-5}{0}{-x}
+ %\psplot[linewidth=1.2pt,algebraic=true]{0}{5}{x}
+ 
+ \psline[linewidth=1.2pt,arrowsize=4pt]{->}(0,0)(3,3)
+
+\psarc[linewidth=.5pt](A){4,23}{0}{180}
+
+\rput(0.5,0.2){$\varphi$}
+\rput(3.4,3.4){$\exp z$}
+\rput(-0.2,4.6){$1$}
+ \rput(5.7,-0.26){$\Re z$}
+ \rput(-0.36,5.7){$\Im z$}
+ \end{pspicture}
+\end{center}
+
+Aus der Definition von $\exp(i\varphi)$ folgt
+\begin{align}
+e^{i\varphi} = \sum \limits_{n=0}^\infty \frac{(i\varphi)^n}{n!} =
+\underbrace{\sum \limits_{k=0}^\infty \frac{(-1)^k}{(2k)!}
+\varphi^{2n}}_{\cos{\varphi}} + i \underbrace{\sum
+\limits_{l=0}^\infty \frac{(-1)^l}{(2l+1)!} \varphi^{2\ln+1}}_{\sin{\varphi}}.
+\end{align}
+Daraus ergeben sich die Relationen
+\begin{align*}
+e^{i\varphi} &= \cos(\varphi) + i\sin(\varphi)\\
+\cos(\varphi) &= \frac{e^{i\varphi}+e^{-i\varphi}}{2}\\
+\sin(\varphi) &= \frac{e^{i\varphi}-e^{-i\varphi}}{2i} 
+\end{align*}
+
+\begin{Bemerkung}
+Es gilt die {\em Euler'sche Gleichung}
+\begin{align}
+e^{i\pi}+1 = 0.
+\end{align}
+\end{Bemerkung}
+
+Jede komplexe Zahl kann somit geschrieben werden als
+\begin{align*}
+z = r \cdot e^{i\varphi}.
+\end{align*}
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(10,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-1,0)(10,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](0,4)(6,4)
+ \psline[linewidth=0.5pt,arrowsize=4pt,linestyle=dashed](6,0)(6,4)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,0)(6,4)
+ 
+ \psarc[linewidth=.5pt](A){1}{0}{33}
+ 
+ \rput(-0.2,-0.3){$0$}
+ \rput(6,-0.3){$x$}
+ \rput(-0.2,4){$y$}
+ \rput(6.2,4.2){$z$}
+ 
+ \rput(3.2,2.4){$r$}
+ 
+ \rput(0.7,0.2){$\varphi$}
+ 
+ \rput(9.7,-0.26){$\Re z$}
+ \rput(-0.36,5.7){$\Im z$}
+ 
+\end{pspicture}
+\end{center}
+\begin{Beispiel}
+\begin{align*}
+z^n &= (re^{i\varphi})^n = r^ne^{in\varphi}\\
+(e^{i\varphi})^2  &= e^{i2\varphi} = \cos2\varphi + i\sin2\varphi \\
+ &= (\cos\varphi + i\sin\varphi)^2  =\underbrace{\cos^2\varphi -
+ \sin^2\varphi}_{\cos{2\varphi}} +
+ i\,\underbrace{2\sin\varphi\cos\varphi}_{i\sin{2\varphi}} \\
+ &= \cos(2\varphi) + i\sin(2\varphi)
+\end{align*}
+\end{Beispiel}
+
+\begin{Bemerkung}
+$\cos{(z)}$ und $\sin{(z)}$ sind nun ebenfalls für komplexe Zahlen definiert. 
+Insbesondere gilt
+\begin{align*}
+\cos ix & = \frac{e^{i\cdot ix}+e^{-i\cdot ix}}{2} = \frac{e^{-x}+e^x}{2} =
+\cosh x \\
+\sin ix & = \frac{e^{-x}-e^x}{2i} = i\frac{e^x-e^{-x}}{2} = i\sinh x
+\end{align*}
+\end{Bemerkung}
+
+\begin{Beispiel}
+\begin{align*}
+\cosh 2x = \cos 2ix = \cos^2 ix - \sin^2 ix = \cosh^2 x + \sinh^2 x
+\end{align*}
+\end{Beispiel}
+
+\subsection {Logarithmus}
+\begin{Definition}[Logarithmus Funktion]
+Der Logarithmus ist definiert als Umkehrfunktion von $\exp(z)$:
+\begin{align*}
+z = e^w \Leftrightarrow w = \ln z
+\end{align*} 
+\end{Definition}
+
+Schreiben wir $z = re^{i\varphi} = re^{i(\varphi + k\cdot2\pi)}$ für $k \in
+\mathbb{Z}$, so gilt
+\begin{align*}
+\ln(z) = \ln\left( re^{i(\varphi + k\cdot2\pi)} \right) = \ln(r) +
+\ln\left( e^{i(\varphi + k\cdot2\pi)} \right) = \ln(r) + i(\varphi +
+k\cdot2\pi).
+\end{align*}
+Somit ist der Logarithmus nicht mehr eindeutig.
+\par
+Die Exponentialfunktion bildet den Bereich $x \in (-\infty, \infty)$ und $y \in
+[0,2\pi)$ bereits auf die gesamte komplexe Ebene ab. Daher wissen wir nicht
+mehr, von welchem $k$ wir gestartet sind. Der Logarithmus hat daher einen
+Schnitt in der komplexen Ebene, in dem die Funktion nicht stetig ist. Die Lage
+des Schnittes kann im Prinzip frei gewählt werden.
+\par
+Mit Hilfe des Logarithmus' lassen sich jetzt auch beliebige Wurzeln und Potenzen
+definieren.
+\begin{equation*}
+f(z) = z^v = \exp(v \cdot \ln z)
+\end{equation*}
+Für $v = \frac{1}{2}$ erhalten wir die Winkelfunktion
+\begin{equation*}
+f(z) = \sqrt{z}.
+\end{equation*}
+Die Vieldeutigkeit des Logarithmus wird auf die Winkelfunktion vererbt
+\begin{equation*}
+\sqrt{z} = \sqrt{re^{i\varphi}} = \sqrt{r}\;e^{i\frac{\varphi}{2}+ki\pi} \qquad
+k = 0,1
+\end{equation*}
+
+Die Vieldeutigkeit kann elegant interpretiert werden durch das Einführen von
+{\em Riemannschen Blättern}. Man interpretiert die z-Ebene bestehend aus 2
+Riemannschen Blättern: Das erste Blatt wird mittels $\sqrt{z}$ auf die obere
+Halbebene in der w-Ebene abgebildet. Das zweite Riemannsche Blatt wird auf die
+untere Halbebene abgebildet.
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-4)(6,4)
+
+ \psframe[fillstyle=solid,fillcolor=lightgray,linestyle=none](-5,-2)(-1,2)
+ \psframe[fillstyle=solid,fillcolor=lightgray,linestyle=none](1,0)(5,2)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-5.5,0)(-0.5,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-3,-2.5)(-3,2.5)
+ 
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0.5,0)(5.5,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(3,-2.5)(3,2.5)
+ 
+ \psarc{->}(0,0){3}{60}{120}
+ \psarc{->}(0,0){3}{240}{300}
+ 
+ \rput(0,3.4){$w^2$}
+ \rput(0,-2.6){$\sqrt{w}$}
+ 
+ \rput(-0.8,-0.26){$\Re z$}
+ \rput(5.2,-0.26){$\Re z$}
+ \rput(-3.4,2.3){$\Im z$}
+ \rput(2.6,2.3){$\Im z$}
+ 
+\end{pspicture}
+\end{center}
+Die beiden Riemannschen Blätter heißen Riemannsche Flächen. Die Wurzel Funktion
+ist dann analytisch von der Riemannschen Fläche nach $\mathbb{C}$ (außer
+$z=0$). Der Schnitt ist die Kreuzungslinie der beiden Blätter.
+
+\begin{Bemerkung}
+Für den $\ln(z)$ ist die Riemannsche Fläche eine Spirale.
+\end{Bemerkung}
+\begin{Beispiel}
+Lösungen von $z^n = 1$ haben die Form $$z = e^{i\frac{2\pi}{n}}$$
+\end{Beispiel}

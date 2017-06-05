@@ -1,0 +1,206 @@
+\section{Differentialrechnung}
+
+Ableiten ist der Prozess in dem bestimmt wird, wie sich eine Funktion $f(x)$
+ändert unter einer Variation ihres Arguments $x$.
+
+
+\begin{Beispiel}[Geschwindigkeit eines Massenpunktes]
+Bei gleichförmiger Bewegung gilt
+\begin{align*}
+x(t) = v\cdot t + x_0
+\end{align*}
+mit der Geschwindigkeit
+\begin{align*}
+v = \frac{x(t+\Delta t)-x(t)}{\Delta t} \equiv \frac{\Delta
+x}{\Delta t}.
+\end{align*}
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(10,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-1,0)(10,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ \psline[linewidth=0.5pt,linecolor=gray,linestyle=dashed](0,4)(10,4)
+ \psline[linewidth=0.5pt,linecolor=gray,linestyle=dashed](0,5)(10,5)
+ \psplot[linewidth=1.2pt,algebraic=true]{-1}{10}{(1/6)*x+(4-1/3)}
+ \psline[linewidth=0.5pt,arrows=-*](2,0)(2,4)
+ \psline[linewidth=0.5pt,arrows=-*](8,0)(8,5)
+ \rput(-0.36,-0.26){$0$}
+ \rput(2,-0.26){$t$}
+ \rput(8,-0.26){$t+\Delta t$}
+ \rput(9.7,-0.26){$x$}
+ \rput(-0.36,4.5){$\Delta x$}
+ \rput(-0.36,5.7){$y$}
+ \rput(9,5.5){$x(t)$}
+\end{pspicture}
+\end{center}
+\end{Beispiel}
+
+Die Ableitung bestimmt somit das Prinzip, mit dem wir die
+Geschwindigkeit eines Massenpunktes auf beliebige Wege $x(t)$ verallgemeinern
+können.
+
+Auf einem kleinen Bereich $\Delta x = x_1 - x_0$ ändert sich die Funktion
+$f(x)$ um den kleinen Wert
+\begin{align*}
+\Delta f = f(x_1) - f(x_0).
+\end{align*}
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-1,-1)(10,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-1,0)(10,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ \psline[linewidth=0.5pt,linecolor=gray,linestyle=dashed](0,3.44)(10,3.44)
+ \psline[linewidth=0.5pt,linecolor=gray,linestyle=dashed](0,4.56)(10,4.56)
+ \psplot[linewidth=1.2pt,algebraic=true]{0}{10}{0.04*x^2+2}
+ \psplot[linewidth=1.2pt,algebraic=true]{0}{10}{0.48*(x-6)+3.44}
+
+ \psline[linewidth=0.5pt,arrows=-*](6,0)(6,3.44)
+ \psline[linewidth=0.5pt,arrows=-*](8,0)(8,4.56)
+ \rput(-0.36,-0.26){$0$}
+ \rput(6,-0.26){$x_0$}
+ \rput(7,-0.26){$\Delta x$}
+ \rput(8,-0.26){$x_1$}
+ \rput(9.7,-0.26){$x$}
+ \rput(-0.36,4){$\Delta f$}
+ \rput(-0.36,5.7){$y$}
+ \rput(8.6,5.5){$f(x)$}
+\end{pspicture}
+\end{center}
+
+Für kleine $\Delta x$ beschreibt somit der Quotient
+\begin{align*}
+\frac{\Delta f}{\Delta x} = \frac{f(x_1) - f(x_0)}{x_1-x_0}
+\end{align*}
+das Verhalten der Funktion $f(x)$ im Punkt $x_0$.\\
+
+\begin{Definition}[Ableitung]
+Die formale Definition der Ableitung folgt mittels des Grenzwerts.
+\begin{equation}
+\frac{d}{dx}f(x) \equiv f'(x) = \lim \limits_{\Delta x \to 0}
+\frac{f(x+\Delta x) - f(x)}{\Delta x}
+\end{equation}
+\end{Definition}
+
+Eine Funktion $f(x)$ heißt differenzierbar, wenn dieser Grenzwert existiert. Da
+$f'(x)$ wieder Funktion der Variable $x$ ist, können wir höhere Ableitungen
+bilden mittels
+\begin{equation}
+\frac{d^n}{dx^n}f(x) \equiv f^{(n)}(x) = \lim \limits_{\Delta x \to 0}
+\frac{f^{(n-1)}(x+\Delta x) - f^{(n-1)}(x)}{\Delta x}
+\end{equation}
+
+\begin{Beispiel}[Ableitungen]
+\begin{itemize}
+\item $\frac{d}{dx}(x^n) = nx^{n-1}$\\
+\begin{info}
+\begin{align*}
+\Delta f &= (x+\Delta x)^n - x^n = \sum \limits_{k}{\binom{n}{k}} x^{n-k}\Delta
+x^k -x^n  \\
+&= {\binom{n}{k}} \Delta x\,x^{n-1} + \sigma(\Delta x)
+\end{align*}
+\end{info}
+\item $\frac{d}{dx}e^{ax} = ae^{ax}$
+\item $\frac{d}{dx}\ln x = \frac{1}{x}$
+\item $\frac{d}{dx}\sin x = \cos x$
+\item $\frac{d}{dx}\cos x = -\sin x$
+\item nicht differenzierbar in $x = 0$
+\begin{align*}
+f(x) &= |x|
+\end{align*}
+\begin{align*}
+\frac{d}{dx}|x| & = \sgn(x) = \begin{cases}
+1 & x > 0\\0 & x = 0\\-1 &  x < 0
+\end{cases}
+\end{align*}
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(-6,-1)(6,6)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(-6,0)(6,0)
+ \psline[linewidth=0.5pt,arrowsize=4pt]{->}(0,-1)(0,6)
+ \psplot[linewidth=1.2pt,algebraic=true]{-5}{0}{-x}
+ \psplot[linewidth=1.2pt,algebraic=true]{0}{5}{x}
+
+ \rput(-0.36,-0.26){$0$}
+ \rput(5.7,-0.26){$x$}
+ \rput(-0.36,5.7){$y$}
+ \end{pspicture}
+\end{center}
+
+\begin{align*}
+\frac{d^2}{dx^2}|x| &= 2\delta(x) \text{ Dirac $\delta$-Funktion}
+\end{align*}
+\end{itemize}
+
+\end{Beispiel}
+
+
+\begin{Definition}[Taylor Reihe]
+ Die Ableitungen beschreiben das Verhalten um einen bestimmten Punkt. Daher
+können wir eine differenzierbare Funktion in einer kleinen Umgebung 
+als {\em Taylor Reihe} approximieren.
+\begin{equation}
+f(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 +
+\sigma((x-x_0)^3)
+\end{equation}
+\end{Definition}
+
+\par{\bf Achtung}
+Die Approximation kann nicht immer durch Mitnahme höherer Terme beliebig genau
+gemacht werden.
+
+\par
+Die erste Ableitung beschreibt die Steigung der Kurve während die zweite
+Ableitung die Krümmung einer Kurve ergibt. Bei der Bewegung $x(t)$ eines Massenpunktes beschreibt die erste Ableitung die
+Geschwindigkeit
+\begin{align*}
+v = \frac{d}{dt}x(t) \equiv \dot{x}(t),
+\end{align*} während die zweite
+Ableitung die Beschleunigung ergibt
+\begin{align*}
+&a = \frac{d^2}{dt^2}x(t) \equiv \ddot{x}(t).\\
+&\Rightarrow\;  \text{Newton'sche Gesetz: } m \ddot{x}(t) = F(x,t)
+\end{align*}
+
+\subsection{Differentationsregeln}
+Die Ableitung ist eine lineare Operation, d.h.
+\begin{align*}
+&(a\cdot f(x))' = af'(x)\\
+&(f(x)+g(x))' = f'(x) + g'(x)\nonumber
+\end{align*}
+\par{\bf Produktregel}
+\begin{equation}
+(f(x)\cdot g(x))' = f'(x)g(x) + f(x)g'(x)
+\end{equation}
+\begin{info}
+\begin{align*}
+&f(x+\Delta x)g(x+\Delta x) \\
+&= (f(x) + f'(x)\Delta x+\sigma(\Delta x^2))(g(x)+g'(x)\Delta x+\sigma(\Delta
+x^2)) \\ 
+&= f(x)\cdot g(x) + \Delta x(\underbrace{f'(x)g(x)+f(x)g'(x)+\sigma(\Delta
+x^2)}_{f(x)g(x)})
+\end{align*}
+\end{info}
+\par{\bf Kettenregel}
+Betrachte die Funktion $f(g(x))$. Für die
+Ableitung erhalten wir
+\begin{equation}
+\frac{d}{dx}f(g(x)) = \left( \frac{d}{dg}f(g) \right) \frac{d}{dx}g(x)
+\end{equation}
+\begin{info}
+\begin{align*}
+\begin{split}
+f(g(x+\Delta x)) \simeq f(g(x)+\underbrace{\Delta xg'(x)}_{\Delta g} \simeq
+f(g(x))+\underbrace{f'(g(x))\cdot g'(x)}_{f(g(x))'}\Delta x \\+ \sigma(\Delta
+x^2)
+\end{split}
+\end{align*}
+\end{info}
+\par{\bf Umkehrfunktion}
+\begin{align*}
+y &= f(x) \Rightarrow x = f^{-1}(y) \nonumber\\
+\frac{d}{dy}f^{-1}(y) &= \frac{1}{\left(\frac{d}{dx}f(x)\right)} =
+\frac{1}{f'(f^{-1}(y))}
+\end{align*}

@@ -1,0 +1,122 @@
+\section{Fourierreihe und Fouriertransformation}
+\subsection{Fourierreihe}
+Im Folgenden sind wir an periodischen Funktionen $f(x)$ interessiert, mit
+Periode $L$, d.h.
+\begin{align*}
+f(x + L) = f(x)
+\end{align*}
+Insbesondere dürfen die Funktionen auch komplexwertig sein, und sollen die {\em
+Dirichlet Bedingung} erfüllen.
+\begin{enumerate}
+  \item $|f(x)|$ ist integrierbar
+  \item $f(x)$ ist stückweise stetig
+  \item $f(x)$ hat endlich viele Extrema
+  \item $f(x) = \lim \limits_{\varepsilon\to0}
+  \frac{1}{2}\left[f(x+\varepsilon) + f(x-\varepsilon)\right]$
+\end{enumerate}
+Ein spezielles Set von solchen Funktionen ist
+\begin{align*}
+f_n(x) = e^{i\ k_n\ x}\qquad k_n = \frac{2\pi n}{L},\quad n\in\Z.
+\end{align*}
+Insbesondere gilt
+\begin{align*}
+\frac{1}{L} \int \limits_{0}^{L} \dx f_n(x) f_m^*(x) = \frac{1}{L} \int
+\limits_{0}^{L} \dx e^{i\ \frac{2\pi}{L}\ x(n-m)} = \delta_{n,m}.
+\end{align*}
+\begin{Definition}[Fourierkoeffizienten]
+Die Fourierkoeffizienten einer Funktion $f(x)$ sind definiert als
+\begin{align*}
+\hat{f}(n) = \frac{1}{L} \int \limits_{0}^{L} e^{-i\ k_n\ x} f(x) \equiv c_n.
+\end{align*}
+\end{Definition}
+\begin{Definition}[Fourierreihe]
+Die Fourierreihe hat somit die Form
+\begin{align*}
+\sum \limits_{n = -\infty}^{\infty} \hat{f}(n) e^{i\ k_n\ x},
+\end{align*}
+und es gilt, dass diese Reihe konvergiert und die Funktion identisch zu $f(x)$
+ist, d.h. wir können $f(x)$ darstellen als
+\begin{align*}
+&f(x) = \sum \limits_{n = -\infty}^{\infty} \hat{f}(n) e^{i\ k_n\ x}\quad k_n
+= \frac{2\pi n}{L}\\
+&\hat{f}(n) = \frac{1}{L} \int \limits_{0}^{L} \dx e^{-i\ k_n\ x} f(x).
+\end{align*}
+Somit können wir jede Funktion in {\em elementare Schwingungen} zerlegen. 
+\end{Definition}
+\begin{Bemerkung}
+$e^{ikx} = \cos(kx) + i\sin(kx)$ und somit haben wir die Funktion in $\sin$ und
+$\cos$ zerlegt.
+\end{Bemerkung}
+\begin{Bemerkung}
+Alternative Form der Fourierreihe
+\begin{align*}
+f(x) &= \sum \limits_{n=-\infty}^{\infty} \hat{f}(n)e^{i k_n x} = \sum
+\limits_{n = -\infty}^{\infty} \hat{f}(n) \cos(k_n x) + i\hat{f}(n) \sin(k_n
+x)\\
+&= \underbrace{\hat{f}(0)}_{\frac{a_0}{2}} + \sum \limits_{n=1}^{\infty}
+\underbrace{\left(\hat{f}(n) + \hat{f}(-n) \right)}_{a_n} \cos(k_n x) + i\sum
+\limits_{n=1}^{\infty} \underbrace{\left( \hat{f}(n) - \hat{f}(-n)
+\right)}_{b_n} \sin(k_n x) \\
+&= \frac{a_0}{2} + \sum\limits_{n=1}^{\infty} a_n
+\cos(k_n x) + \sum \limits_{n=1}^{\infty} b_n \sin(k_n x)
+\end{align*}
+\begin{align*}
+\text{mit } & a_n = \frac{2}{L} \int \limits_{0}^{L} \dx \cos(k_n x)f(x)\\
+&b_n = \frac{2}{L} \int \limits_{0}^{L} \dx \sin(k_n x)f(x)
+\end{align*}
+\end{Bemerkung}
+\begin{Bemerkung}
+\par
+\begin{itemize}
+  \item Falls $f(x)$ reell ist, so gilt $\hat{f}(n) = \hat{f}^*(-n)$ $(a_n,
+  b_n \in \R)$
+  \item Falls $f(x)$ symmetrisch ist, d.h. $f(x) = f(-x)$, so gilt $\hat{f}(n)
+  = \hat{f}(-n)$ $(b_n = 0)$
+  \item Falls $f(x)$ symmetrisch und reell ist, so ist $\hat{f}(n)$ symmetrisch
+  und reell. $(a_n \in \R, b_n = 0)$
+\end{itemize}
+\end{Bemerkung}
+Die Idee für den Beweis für den obigen Satz hat die Form
+\begin{align*}
+F_N(x) &= \sum \limits_{n=-N}^{N} \hat{f}(n) e^{i k_n x} = \frac{1}{L} \int
+\limits_{0}^{L} \dy \sum \limits_{n=-N}^{N} e^{i k_n (x-y)} f(y) = \int
+\limits_{0}^{L} \dy D_N (x-y) f(x)
+\end{align*}
+mit
+\begin{align*}
+D_N(x-y) \equiv
+\frac{1}{L}\frac{\sin\left(\frac{2\pi(N+\frac{1}{2})(x-y)}{L}\right)}{\sin\left(\frac{\pi(x-y)}{L}\right)}
+= e^{-i N \frac{2\pi}{L}(x-y)}\frac{1-
+\left(e^{i\frac{2\pi}{L}(x-y)}\right)^{2N+1}}{1-e^{i\frac{2\pi}{L}(x-y)}}
+\end{align*}
+Die Funktion $D_N(x)$ gleicht aber der Funktionenreihe, die gegen eine
+$\delta$-Funktion konvergiert, d.h.
+\begin{align*}
+\int \limits_{0}^{L} \dy D(x-y) = 1.
+\end{align*}
+Formal gilt daher
+\begin{align*}
+D_N(x-y) \underset{N\to\infty}{\rightarrow} \sum \limits_{j=-\infty}^{\infty}
+\delta\left(x-y + jL\right),
+\end{align*}
+und somit
+\begin{align*}
+F_N(x) \overset{N\to\infty}{\rightarrow} \int \limits_{0}^{L} \dy \sum
+\limits_{j=-\infty}^{\infty} \delta\left(x-y + jL\right)f(y) = f(x)
+\end{align*}
+\begin{Bemerkung}
+Die Relation
+\begin{align*}
+\sum \limits_{n=-\infty}^{\infty} e^{i k_n x} = \sum
+\limits_{j=-\infty}^{\infty} \delta\left(x + jL\right)
+\end{align*}
+wird in der Physik oft verwendet.
+\end{Bemerkung}
+\begin{Bemerkung}
+Für die Fourierkoeffizienten gilt die Gleichung
+\begin{align*}
+\frac{1}{L} \int \limits_{0}^{L} \left|f(x)\right|^2 = \sum
+\limits_{n=-\infty}^{\infty} \left| \hat{f}(n) \right|^2 \text{ : Satz von
+Parseval}
+\end{align*}
+\end{Bemerkung}
